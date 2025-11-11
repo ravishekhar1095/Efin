@@ -1,57 +1,139 @@
-import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import logo from '../assets/efin-logo.svg';
+import landingPages, { NAV_STRUCTURE } from '../content/landingPages';
+import './Header.css';
+
+const NAV_LINKS = NAV_STRUCTURE.map((section) => ({
+  label: section.label,
+  items: section.items
+    .map((key) => {
+      const page = landingPages[key];
+      if (!page) {
+        return null;
+      }
+      return {
+        label: page.title,
+        description: page.excerpt,
+        to: `/${key}`,
+      };
+    })
+    .filter(Boolean),
+}));
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const headerRef = useRef(null);
 
-  const handleToggle = () => setMenuOpen((prev) => !prev);
-  const handleClose = () => setMenuOpen(false);
-  const getNavClass = ({ isActive }) => (isActive ? 'active' : undefined);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (headerRef.current) {
+        headerRef.current.classList.toggle('has-shadow', window.scrollY > 10);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle('nav-open', menuOpen);
+    return () => document.body.classList.remove('nav-open');
+  }, [menuOpen]);
+
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
+    if (menuOpen) {
+      setActiveDropdown(null);
+    }
+  };
+
+  const toggleDropdown = (label) => {
+    setActiveDropdown((prev) => (prev === label ? null : label));
+  };
+
+  const handleClose = () => {
+    setMenuOpen(false);
+    setActiveDropdown(null);
+  };
+
+  const handleFocusOut = (event) => {
+    if (headerRef.current && !headerRef.current.contains(event.relatedTarget)) {
+      setActiveDropdown(null);
+    }
+  };
 
   return (
-    <header className="top-bar">
-      <Link to="/" className="logo" onClick={handleClose}>
-        Efin
-      </Link>
-
-      <button
-        className="menu-toggle"
-        type="button"
-        onClick={handleToggle}
-        aria-expanded={menuOpen}
-        aria-controls="primary-navigation"
-      >
-        <span />
-        <span />
-        <span />
-      </button>
-
-      <nav
-        id="primary-navigation"
-        className={`nav-links${menuOpen ? ' open' : ''}`}
-        aria-label="Main navigation"
-      >
-        <NavLink to="/solutions" className={getNavClass} onClick={handleClose}>
-          Solutions
-        </NavLink>
-        <NavLink to="/why-efin" className={getNavClass} onClick={handleClose}>
-          Why Efin
-        </NavLink>
-        <NavLink to="/how-it-works" className={getNavClass} onClick={handleClose}>
-          How It Works
-        </NavLink>
-        <NavLink to="/support" className={getNavClass} onClick={handleClose}>
-          Support
-        </NavLink>
-      </nav>
-
-      <div className="nav-actions">
-        <Link className="secondary-link" to="/support/login" onClick={handleClose}>
-          Customer Login
+    <header className="fibe-header" ref={headerRef}>
+      <div className="header-shell">
+        <Link to="/" className="brand-mark" onClick={handleClose}>
+          <img src={logo} alt="E-Fin" />
         </Link>
-        <Link className="primary-btn" to="/support/apply" onClick={handleClose}>
-          Apply Now
-        </Link>
+
+        <button
+          className={`nav-toggle${menuOpen ? ' is-active' : ''}`}
+          type="button"
+          aria-label="Toggle navigation"
+          aria-expanded={menuOpen}
+          onClick={toggleMenu}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <div className={`nav-overlay${menuOpen ? ' show' : ''}`} onClick={handleClose} />
+
+        <nav className={`primary-nav${menuOpen ? ' is-visible' : ''}`} aria-label="Primary">
+          <ul>
+            {NAV_LINKS.map((section) => (
+              <li
+                key={section.label}
+                onBlur={handleFocusOut}
+                className={activeDropdown === section.label ? 'expanded' : undefined}
+              >
+                <button
+                  type="button"
+                  className="nav-link"
+                  onClick={() => toggleDropdown(section.label)}
+                >
+                  {section.label}
+                  <span className="chevron" />
+                </button>
+                <div className={`mega-menu${activeDropdown === section.label ? ' show' : ''}`}>
+                  {section.items.map((item) => (
+                    <Link key={item.label} to={item.to} className="mega-card" onClick={handleClose}>
+                      <div className="card-text">
+                        <h4>{item.label}</h4>
+                        <p>{item.description}</p>
+                      </div>
+                      <span aria-hidden="true">→</span>
+                    </Link>
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ul>
+          <div className="drawer-actions">
+            <Link className="ghost-btn" to="/support/apply" onClick={handleClose}>
+              Download E-Fin
+            </Link>
+            <Link className="primary-btn" to="/support/login" onClick={handleClose}>
+              Sign In
+            </Link>
+          </div>
+        </nav>
+
+        <div className="nav-actions">
+          <Link className="ghost-btn" to="/support/apply" onClick={handleClose}>
+            Download E-Fin
+          </Link>
+          <Link className="primary-btn" to="/support/login" onClick={handleClose}>
+            Sign In
+          </Link>
+        </div>
       </div>
     </header>
   );

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="135" height="40" viewBox="0 0 135 40">
+  <rect width="135" height="40" rx="8" fill="#000" />
+  <path d="M18 11.4c-.9.5-1.5 1.6-1.5 3V25c0 1.4.6 2.5 1.5 3l9.5-8.3L18 11.4z" fill="#34a853"/>
+  <path d="M30 16.8l-2.4-2.1-9.6 8.3 2.5 2.2 9.5-8.4z" fill="#4285f4"/>
+  <path d="M17.9 28c.2.1.5.1.8.1.6 0 1.1-.2 1.6-.6l10.4-9.1-3.6-3.2-9.2 12.8z" fill="#fbbc05"/>
+  <path d="M30 23.2l-11.5 7.6c.6.4 1.3.4 2 .1l11.8-6.8c.8-.5 1.2-1.2 1.2-2s-.4-1.6-1.1-2.1L30 23.2z" fill="#ea4335"/>
+  <text x="44" y="26" fill="#fff" font-family="'Segoe UI', 'Inter', sans-serif" font-size="12" font-weight="600">Google Play</text>
+</svg>

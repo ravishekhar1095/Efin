@@ -1,26 +1,74 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const rupeeFormatter = new Intl.NumberFormat('en-IN', {
+const currencyFormatter = new Intl.NumberFormat('en-IN', {
   style: 'currency',
   currency: 'INR',
   maximumFractionDigits: 0,
 });
 
-function LoanCalculator({ defaultAmount = 150000, defaultTenure = 24, defaultRate = 12.5 }) {
-  const [amount, setAmount] = useState(defaultAmount);
-  const [tenure, setTenure] = useState(defaultTenure);
-  const [rate, setRate] = useState(defaultRate);
+const DEFAULT_SLIDERS = {
+  amount: {
+    label: 'Loan amount',
+    min: 8000,
+    max: 500000,
+    step: 1000,
+    minLabel: '₹8K',
+    maxLabel: '₹5L',
+    defaultValue: 145000,
+    formatValue: (value) => currencyFormatter.format(value),
+  },
+  rate: {
+    label: 'Interest rate',
+    min: 12,
+    max: 30,
+    step: 2,
+    minLabel: '12%',
+    maxLabel: '30%',
+    defaultValue: 14,
+    formatValue: (value) => `${value}%`,
+  },
+  tenure: {
+    label: 'Select EMI option',
+    min: 6,
+    max: 36,
+    step: 3,
+    minLabel: '6 Months',
+    maxLabel: '36 Months',
+    defaultValue: 12,
+    formatValue: (value) => `${value} Months`,
+  },
+};
+
+function LoanCalculator({
+  sliders = {},
+  ctaLabel = 'Apply now',
+  ctaTo = '/support/apply',
+  note = 'Estimates are indicative and subject to final credit approval. Representative APR varies based on applicant profile and lender policies.',
+}) {
+  const mergedSliders = {
+    amount: { ...DEFAULT_SLIDERS.amount, ...(sliders.amount || {}) },
+    rate: { ...DEFAULT_SLIDERS.rate, ...(sliders.rate || {}) },
+    tenure: { ...DEFAULT_SLIDERS.tenure, ...(sliders.tenure || {}) },
+  };
+
+  const [amount, setAmount] = useState(
+    mergedSliders.amount.defaultValue ?? mergedSliders.amount.min,
+  );
+  const [rate, setRate] = useState(mergedSliders.rate.defaultValue ?? mergedSliders.rate.min);
+  const [tenure, setTenure] = useState(
+    mergedSliders.tenure.defaultValue ?? mergedSliders.tenure.min,
+  );
 
   const { emi, totalInterest, totalPayable } = useMemo(() => {
     const principal = Number(amount);
     const months = Number(tenure);
     const monthlyRate = Number(rate) / 12 / 100;
 
-    if (!monthlyRate) {
-      const simpleEmi = principal / months;
+    if (!monthlyRate || !months) {
+      const baseEmi = months ? principal / months : principal;
       return {
-        emi: simpleEmi,
+        emi: baseEmi,
         totalInterest: 0,
         totalPayable: principal,
       };
@@ -37,124 +85,75 @@ function LoanCalculator({ defaultAmount = 150000, defaultTenure = 24, defaultRat
     };
   }, [amount, tenure, rate]);
 
-  const quickAmounts = [50000, 100000, 200000, 300000];
-  const quickTenures = [12, 24, 36, 48];
+  const handleSliderChange = (id) => (event) => {
+    const value = Number(event.target.value);
+    if (id === 'amount') setAmount(value);
+    if (id === 'rate') setRate(value);
+    if (id === 'tenure') setTenure(value);
+  };
+
+  const sliderList = [
+    { id: 'amount', ...mergedSliders.amount },
+    { id: 'rate', ...mergedSliders.rate },
+    { id: 'tenure', ...mergedSliders.tenure },
+  ];
 
   return (
     <div className="loan-calculator">
-      <div className="calculator-header">
-        <span>Personal Loan Snapshot</span>
-        <strong>{rupeeFormatter.format(amount)}</strong>
+      <div className="loan-calculator__inputs">
+        {sliderList.map((slider) => {
+          const currentValue =
+            slider.id === 'amount' ? amount : slider.id === 'rate' ? rate : tenure;
+          return (
+            <div className="slider-field" key={slider.id}>
+              <div className="slider-heading">
+                <label htmlFor={`slider-${slider.id}`}>{slider.label}</label>
+                <span className="value-chip">
+                  {slider.formatValue ? slider.formatValue(currentValue) : currentValue}
+                </span>
+              </div>
+              <input
+                id={`slider-${slider.id}`}
+                type="range"
+                min={slider.min}
+                max={slider.max}
+                step={slider.step}
+                value={currentValue}
+                onChange={handleSliderChange(slider.id)}
+              />
+              <div className="range-extents">
+                <span>{slider.minLabel ?? slider.min}</span>
+                <span>{slider.maxLabel ?? slider.max}</span>
+              </div>
+            </div>
+          );
+        })}
       </div>
 
-      <div className="calculator-grid">
-        <label htmlFor="loan-amount">
-          <span className="label">Loan Amount</span>
-          <input
-            id="loan-amount"
-            type="range"
-            min="20000"
-            max="500000"
-            step="5000"
-            value={amount}
-            onChange={(event) => setAmount(Number(event.target.value))}
-          />
-          <div className="range-values">
-            <span>{rupeeFormatter.format(20000)}</span>
-            <span>{rupeeFormatter.format(amount)}</span>
-            <span>{rupeeFormatter.format(500000)}</span>
-          </div>
-          <div className="quick-pills">
-            {quickAmounts.map((value) => (
-              <button
-                key={value}
-                type="button"
-                className={`pill${amount === value ? ' selected' : ''}`}
-                onClick={() => setAmount(value)}
-              >
-                {rupeeFormatter.format(value)}
-              </button>
-            ))}
-          </div>
-        </label>
-
-        <label htmlFor="loan-tenure">
-          <span className="label">Tenure (Months)</span>
-          <input
-            id="loan-tenure"
-            type="range"
-            min="6"
-            max="60"
-            step="6"
-            value={tenure}
-            onChange={(event) => setTenure(Number(event.target.value))}
-          />
-          <div className="range-values">
-            <span>6</span>
-            <span>{tenure}</span>
-            <span>60</span>
-          </div>
-          <div className="quick-pills">
-            {quickTenures.map((value) => (
-              <button
-                key={value}
-                type="button"
-                className={`pill${tenure === value ? ' selected' : ''}`}
-                onClick={() => setTenure(value)}
-              >
-                {value} m
-              </button>
-            ))}
-          </div>
-        </label>
-
-        <label htmlFor="interest-rate">
-          <span className="label">Interest Rate (% p.a.)</span>
-          <input
-            id="interest-rate"
-            type="range"
-            min="10"
-            max="28"
-            step="0.5"
-            value={rate}
-            onChange={(event) => setRate(Number(event.target.value))}
-          />
-          <div className="range-values">
-            <span>10%</span>
-            <span>{rate.toFixed(1)}%</span>
-            <span>28%</span>
-          </div>
-        </label>
-      </div>
-
-      <div className="calculator-summary">
-        <div>
-          <span className="label">Monthly EMI</span>
-          <strong>{rupeeFormatter.format(emi)}</strong>
+      <div className="loan-calculator__summary">
+        <div className="emi-highlight">
+          <p>Your monthly instalment:</p>
+          <strong>{currencyFormatter.format(Math.round(emi || 0))}</strong>
         </div>
-        <div>
-          <span className="label">Total Payable</span>
-          <strong>{rupeeFormatter.format(totalPayable)}</strong>
+        <div className="summary-grid">
+          <div className="summary-row">
+            <span>Total interest</span>
+            <strong>{currencyFormatter.format(Math.max(totalInterest, 0))}</strong>
+          </div>
+          <div className="summary-row">
+            <span>Principal amount</span>
+            <strong>{currencyFormatter.format(amount)}</strong>
+          </div>
+          <div className="summary-row total">
+            <span>Total amount</span>
+            <strong>{currencyFormatter.format(Math.max(totalPayable, 0))}</strong>
+          </div>
         </div>
-        <div>
-          <span className="label">Total Interest</span>
-          <strong>{rupeeFormatter.format(totalInterest)}</strong>
-        </div>
-      </div>
-
-      <div className="calculator-cta">
-        <Link className="primary-btn" to="/support/apply">
-          Get Instant Offer
+        <Link className="primary-btn" to={ctaTo}>
+          {ctaLabel}
         </Link>
-        <Link className="ghost-btn" to="/support">
-          Talk to an advisor
-        </Link>
+        {note && <p className="card-footnote">{note}</p>}
       </div>
-
-      <p className="card-footnote">
-        Estimates are indicative and subject to final credit approval. Representative APR varies
-        based on applicant profile and lender policies.
-      </p>
     </div>
   );
 }
