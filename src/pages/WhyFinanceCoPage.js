@@ -63,7 +63,7 @@ const OFFICES = [
 
 const CONTACT_LINKS = [
   { label: 'Phone', value: '+91-9997842548', href: 'tel:+919997842548' },
-  { label: 'Email', value: 'care@efin.co.in', href: 'mailto:care@efin.co.in' },
+  { label: 'Email', value: 'care@e-fin.in', href: 'mailto:care@e-fin.in' },
 ];
 
 const TIMELINE = [
@@ -111,6 +111,25 @@ const CLIENT_REVIEWS = [
   },
 ];
 
+const PILLARS = [
+  { title: 'Regulatory-first', detail: 'RBI-registered NBFC with transparent governance and ISO 27001-certified infra.' },
+  { title: 'Human + tech', detail: 'AI-assisted underwriting paired with multilingual advisors across every channel.' },
+  { title: 'Always-on support', detail: 'In-app, WhatsApp, telephony, and doorstep teams for every customer journey.' },
+];
+
+const IMPACT = [
+  { label: 'Borrowers served', value: '2.4M+' },
+  { label: 'Partner network', value: '8,000+' },
+  { label: 'Cities covered', value: '220+' },
+  { label: 'Avg satisfaction', value: '4.7/5' },
+];
+
+const LEADERS = [
+  { name: 'Nupur Malhotra', title: 'CEO & Director', focus: 'Governance & growth' },
+  { name: 'Anish Sharma', title: 'Chief Risk Officer', focus: 'Underwriting & portfolio quality' },
+  { name: 'Ria Deshpande', title: 'Head of Partnerships', focus: 'Alliances & embedded journeys' },
+];
+
 function WhyFinanceCoPage() {
   return (
     <div className="page why-page">
@@ -141,9 +160,18 @@ function WhyFinanceCoPage() {
         </li>
         <li>
           <strong>+91-9997842548</strong>
-          <span>care@efin.co.in</span>
+          <span>care@e-fin.in</span>
         </li>
       </ul>
+
+      <section className="pillars-grid">
+        {PILLARS.map((pillar) => (
+          <article key={pillar.title} className="pillar-card">
+            <h3>{pillar.title}</h3>
+            <p>{pillar.detail}</p>
+          </article>
+        ))}
+      </section>
 
       <section className="section about-grid">
         <div className="company-card">
@@ -192,6 +220,15 @@ function WhyFinanceCoPage() {
         </div>
       </section>
 
+      <section className="impact-grid">
+        {IMPACT.map((item) => (
+          <article key={item.label}>
+            <strong>{item.value}</strong>
+            <span>{item.label}</span>
+          </article>
+        ))}
+      </section>
+
       <section className="section reach-section">
         <header className="section-heading">
           <span className="eyebrow">Reach us</span>
@@ -213,6 +250,26 @@ function WhyFinanceCoPage() {
                 {contact.value}
               </a>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="leadership-grid">
+        <div className="leadership-head">
+          <p className="eyebrow">Leadership</p>
+          <h2>People who own your experience</h2>
+          <p>Risk, partnerships, and service design leaders working together to keep lending transparent.</p>
+        </div>
+        <div className="leader-cards">
+          {LEADERS.map((leader) => (
+            <article key={leader.name} className="leader-card">
+              <div className="leader-avatar">{leader.name.charAt(0)}</div>
+              <div>
+                <h3>{leader.name}</h3>
+                <p>{leader.title}</p>
+                <span>{leader.focus}</span>
+              </div>
+            </article>
           ))}
         </div>
       </section>
@@ -256,6 +313,22 @@ function WhyFinanceCoPage() {
         </div>
         <div className="ally-carousel">
           <ImageCarousel slides={partnerSlides} interval={6000} />
+        </div>
+      </section>
+
+      <section className="about-cta">
+        <div>
+          <p className="eyebrow">Partner with us</p>
+          <h2>Ready to co-create credit journeys?</h2>
+          <p>Connect with our partnerships desk to embed lending, co-lend, or roll out regional support desks.</p>
+        </div>
+        <div className="about-cta-actions">
+          <a className="primary-btn" href="mailto:care@e-fin.in">
+            Write to partnerships
+          </a>
+          <a className="ghost-btn" href="tel:+919997842548">
+            Call +91-9997842548
+          </a>
         </div>
       </section>
 
@@ -358,8 +431,8 @@ function WhyFinanceCoPage() {
           <a className="primary-btn" href="tel:+919997842548">
             Call +91-9997842548
           </a>
-          <a className="ghost-btn" href="mailto:care@efin.co.in">
-            Email care@efin.co.in
+          <a className="ghost-btn" href="mailto:care@e-fin.in">
+            Email care@e-fin.in
           </a>
         </div>
       </section>

@@ -15,11 +15,12 @@ import LoginPage from './pages/LoginPage';
 import InfoPage from './pages/InfoPage';
 import landingPages from './content/landingPages';
 import PersonalLoanCalculatorPage from './pages/calculators/PersonalLoanCalculatorPage';
-import InstantLoanCalculatorPage from './pages/calculators/InstantLoanCalculatorPage';
+import TwoThreeWheelerCalculatorPage from './pages/calculators/TwoThreeWheelerCalculatorPage';
 import EligibilityCalculatorPage from './pages/calculators/EligibilityCalculatorPage';
 import CreditScorePage from './pages/calculators/CreditScorePage';
 import CareersPage from './pages/CareersPage';
 import NewsroomPage from './pages/NewsroomPage';
+import BlogsPage from './pages/BlogsPage';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           <Route path="solutions/personal-loans" element={<PersonalLoansPage />} />
           <Route path="solutions/buy-now-pay-later" element={<BnplPage />} />
           <Route path="solutions/two-wheeler-finance" element={<TwoWheelerPage />} />
-          <Route path="why-efin" element={<WhyFinanceCoPage />} />
+          <Route path="why-fibe" element={<WhyFinanceCoPage />} />
           <Route path="about" element={<WhyFinanceCoPage />} />
           <Route path="about/careers" element={<CareersPage />} />
           <Route path="about/news" element={<NewsroomPage />} />
@@ -41,7 +42,10 @@ function App() {
           <Route path="support/apply" element={<ApplyPage />} />
           <Route path="support/login" element={<LoginPage />} />
           <Route path="resources/personal-loan-emi-calculator" element={<PersonalLoanCalculatorPage />} />
-          <Route path="resources/instant-loan-emi-calculator" element={<InstantLoanCalculatorPage />} />
+          <Route
+            path="resources/two-three-wheeler-emi-calculator"
+            element={<TwoThreeWheelerCalculatorPage />}
+          />
           <Route path="resources/eligibility-calculator" element={<EligibilityCalculatorPage />} />
           <Route path="resources/check-credit-score" element={<CreditScorePage />} />
           {Object.entries(landingPages).map(([path, page]) => {
@@ -52,6 +56,9 @@ function App() {
               path === 'about/news'
             ) {
               return null;
+            }
+            if (page.template === 'blogs') {
+              return <Route key={path} path={path} element={<BlogsPage />} />;
             }
             return <Route key={path} path={path} element={<InfoPage page={page} />} />;
           })}

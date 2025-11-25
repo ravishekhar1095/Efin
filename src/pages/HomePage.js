@@ -4,7 +4,6 @@ import googlePlayBadge from '../assets/store/google-play.svg';
 import appleStoreBadge from '../assets/store/apple-store.svg';
 import instantCashIcon from '../assets/product-icons/instant-cash-loan.png';
 import personalLoanIcon from '../assets/product-icons/personal-loan.png';
-import loanAgainstIcon from '../assets/product-icons/loan-against-mf.png';
 import emiStoreIcon from '../assets/product-icons/emi-store.png';
 import creditScoreIcon from '../assets/offerings/credit-score.png';
 import financialWellnessIcon from '../assets/offerings/financial-wellness.png';
@@ -32,10 +31,10 @@ const PRODUCT_CARDS = [
     icon: personalLoanIcon,
   },
   {
-    title: 'Loan Against Mutual Fund',
-    description: 'Borrow using mutual fund holdings in minutes.',
-    to: '/offerings/loan-against-mutual-funds',
-    icon: loanAgainstIcon,
+    title: '2 & 3 Wheeler Loans',
+    description: 'Finance bikes, scooters, e-rickshaws, and cargo 3Ws with flexible EMIs.',
+    to: '/loans/two-wheeler-loan',
+    icon: instantCashIcon,
   },
   {
     title: 'EMI Store',
@@ -60,29 +59,6 @@ const LOAN_STEPS = [
   },
 ];
 
-const CALCULATOR_TOOLS = [
-  {
-    title: 'Personal Loan EMI Calculator',
-    copy: 'Get EMI amount, repayment tenure and interest rate beforehand.',
-    to: '/resources/personal-loan-emi-calculator',
-  },
-  {
-    title: 'Instant Loan EMI Calculator',
-    copy: 'Know your EMI amount in seconds to plan finances better.',
-    to: '/resources/instant-loan-emi-calculator',
-  },
-  {
-    title: 'Eligibility Calculator',
-    copy: 'Check your loan eligibility in a few taps.',
-    to: '/resources/eligibility-calculator',
-  },
-  {
-    title: 'Check Credit Score',
-    copy: 'Get your credit score for free before applying for a loan.',
-    to: '/resources/check-credit-score',
-  },
-];
-
 const OTHER_OFFERINGS = [
   {
     title: 'Credit Score',
@@ -103,9 +79,9 @@ const OTHER_OFFERINGS = [
     icon: eligibilityIcon,
   },
   {
-    title: 'E-Fin Axis Bank Credit Card',
+    title: 'E-Fin Card',
     copy: 'Go numberless with India’s coolest co-branded card.',
-    to: '/offerings/fibe-axis-bank-credit-card',
+    to: '/offerings/card',
     icon: creditCardIcon,
   },
 ];
@@ -126,21 +102,6 @@ const WHY_POINTS = [
   {
     title: 'Secure by design',
     copy: 'Bank-grade encryption and RBI-compliant processes keep you safe.',
-  },
-];
-
-const AWARDS = [
-  {
-    title: 'ET BFSI Innovation Tribe',
-    copy: 'Winner - Most Innovative Lending Product 2024.',
-  },
-  {
-    title: 'IAMAI India Digital Awards',
-    copy: 'Best Use of Technology by an NBFC.',
-  },
-  {
-    title: 'Great Place To Work',
-    copy: 'Certified for people-first culture three years in a row.',
   },
 ];
 
@@ -165,29 +126,6 @@ const TESTIMONIALS = [
   },
 ];
 
-const BLOG_POSTS = [
-  {
-    title: 'Year-End Financial Checklist for Every Salaried Employee',
-    date: '30 Oct 2025',
-    category: 'Finance',
-    excerpt:
-      'Review your earnings, expenses, and savings so you can start the next financial year with clarity and confidence.',
-  },
-  {
-    title: 'How to Get Instant Cash Loans in Minutes with E-Fin',
-    date: '19 Sep 2025',
-    category: 'Loans',
-    excerpt:
-      'A quick guide that walks you through eligibility, documents, and tips to keep EMIs affordable.',
-  },
-  {
-    title: '5 Reasons to Try the E-Fin Axis Bank Credit Card',
-    date: '28 Aug 2025',
-    category: 'Cards',
-    excerpt: 'Discover numberless security, tap payments, and lifestyle benefits built for Gen-Z.',
-  },
-];
-
 function HomePage() {
   const [mobile, setMobile] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -208,20 +146,17 @@ function HomePage() {
         <div className="hero-grid">
           <div className="hero-content">
             <span className="eyebrow">India&apos;s largest lending platform</span>
-            <h1>
-              Lightning-fast upgrades with <span>Personal Loans</span>
-            </h1>
+            <h1>Lightning-fast personal loans for everyday upgrades</h1>
             <p>
-              One solution for all life’s big and small upgrades. Plan your dream trip, learn a new
-              skill or handle an emergency with E-Fin’s instant loans. It’s quick, safe, and always
-              available.
+              Handle trips, gadgets, medical needs, or sudden expenses in a tap. Transparent pricing,
+              instant approvals, and money sent straight to your bank.
             </p>
             <div className="hero-cta">
               <Link className="primary-btn" to="/support/apply">
                 Get your loan now
               </Link>
               <Link className="ghost-btn" to="/solutions">
-                Explore our products
+                Explore products
               </Link>
             </div>
             <form className="hero-form" onSubmit={handleHeroSubmit}>
@@ -253,35 +188,6 @@ function HomePage() {
               </a>
             </div>
           </div>
-        <div className="hero-visual">
-          <div className="hero-insight primary">
-            <div className="hero-pill">Trusted by 34Mn+ Indians</div>
-            <div className="hero-snapshot">
-              <p>Illustrative offer</p>
-              <h3>₹2,00,000</h3>
-              <ul>
-                <li>Interest rate: 14% p.a.</li>
-                <li>Tenure: 24 months</li>
-                <li>EMI: ₹9,579</li>
-              </ul>
-            </div>
-            <p className="hero-note">No hidden fees. Foreclose at zero charges.</p>
-          </div>
-          <div className="hero-mini-cards">
-            <div>
-              <span>Approval speed</span>
-              <strong>Instant</strong>
-            </div>
-            <div>
-              <span>Disbursal</span>
-              <strong>&lt; 2 mins</strong>
-            </div>
-            <div>
-              <span>Channels</span>
-              <strong>App · WhatsApp</strong>
-            </div>
-          </div>
-        </div>
         </div>
       </section>
 
@@ -333,26 +239,6 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="section-block calculator-block" id="calculator">
-        <div className="calculator-copy">
-          <span className="eyebrow">Loan Calculators</span>
-          <h2>Skip the guesswork before you apply</h2>
-          <p>
-            Explore dedicated tools for every scenario—whether you want to simulate a personal loan,
-            crunch instant cash EMIs, understand eligibility, or check your credit score.
-          </p>
-          <div className="calculator-tools">
-            {CALCULATOR_TOOLS.map((tool) => (
-              <Link key={tool.title} to={tool.to} className="tool-card">
-                <h3>{tool.title}</h3>
-                <p>{tool.copy}</p>
-                <span>Open</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="section-block offerings-block" id="offerings">
         <header className="section-heading">
           <span className="eyebrow">Our Other Offerings</span>
@@ -373,7 +259,6 @@ function HomePage() {
       <section className="section-block why-block" id="why">
         <header className="section-heading">
           <span className="eyebrow">Why choose E-Fin?</span>
-          <h2>The cool new vibe to finance</h2>
           <p>Handle every upgrade like a pro with instant approvals and flexible repayments.</p>
         </header>
         <div className="why-grid">
@@ -381,21 +266,6 @@ function HomePage() {
             <article key={point.title}>
               <h3>{point.title}</h3>
               <p>{point.copy}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section-block awards-block" id="awards">
-        <header className="section-heading">
-          <span className="eyebrow">Awards and Achievements</span>
-          <h2>The industry recognises us as much as our customers do</h2>
-        </header>
-        <div className="awards-grid">
-          {AWARDS.map((award) => (
-            <article key={award.title}>
-              <h3>{award.title}</h3>
-              <p>{award.copy}</p>
             </article>
           ))}
         </div>
@@ -416,45 +286,6 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="section-block download-block" id="download">
-        <div className="download-card">
-          <div>
-            <span className="eyebrow">The cool new vibe to finance</span>
-            <h2>Download the E-Fin app and get instant cash anywhere</h2>
-            <p>Track EMIs, download statements, and unlock personalised offers on the go.</p>
-          </div>
-          <div className="store-badges">
-            <a href="https://play.google.com/" className="store-badge" target="_blank" rel="noreferrer">
-              <img src={googlePlayBadge} alt="Get it on Google Play" />
-            </a>
-            <a href="https://www.apple.com/app-store/" className="store-badge" target="_blank" rel="noreferrer">
-              <img src={appleStoreBadge} alt="Download on the App Store" />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-block blog-block" id="blog">
-        <header className="section-heading">
-          <span className="eyebrow">E-Fin Blogs</span>
-          <h2>Learn the smart way to handle credit</h2>
-        </header>
-        <div className="blog-grid">
-          {BLOG_POSTS.map((post) => (
-            <article key={post.title}>
-              <div className="blog-meta">
-                <span>{post.category}</span>
-                <time dateTime={post.date}>{post.date}</time>
-              </div>
-              <h3>{post.title}</h3>
-              <p>{post.excerpt}</p>
-              <Link to="/learn/blogs" className="primary-link">
-                Read More
-              </Link>
-            </article>
-          ))}
-        </div>
-      </section>
     </div>
   );
 }

@@ -3,33 +3,153 @@ import { Link } from 'react-router-dom';
 import SolutionsIllustration from '../components/illustrations/SolutionsIllustration';
 import ImageCarousel from '../components/ImageCarousel';
 
+const AUDIENCE_FILTERS = [
+  { id: 'all', label: 'All profiles' },
+  { id: 'salaried', label: 'Salaried' },
+  { id: 'self-employed', label: 'Self employed' },
+  { id: 'students', label: 'Students' },
+];
+
+const SOLUTION_METRICS = [
+  { label: 'Avg approval time', value: '< 2 mins' },
+  { label: 'Ticket size handled', value: '₹5K – ₹25L' },
+  { label: 'Partner stores & DSAs', value: '8,000+' },
+  { label: 'Cities serviced', value: '150+' },
+];
+
 const solutionData = [
+  {
+    id: 'instant-cash',
+    title: 'Instant Cash Loan',
+    summary:
+      'Digital journeys that credit cash straight to the customer’s bank account in minutes for urgent expenses.',
+    audience: ['salaried', 'self-employed'],
+    link: '/loans/instant-cash-loan',
+    highlights: ['₹5K – ₹5L limit', 'Tenure 3 – 36 months', 'Zero foreclosure fee'],
+    range: '₹5K – ₹5L',
+    tenure: 'Tenure 3 – 36 months',
+    rate: 'From 1.33% p.m.',
+    ctaLabel: 'Open cash loans',
+  },
   {
     id: 'personal-loans',
     title: 'Personal Loans',
     summary:
-      'Unsecured credit up to ₹5,00,000 with flexible tenures and transparent pricing for your every need.',
-    audience: ['salaried', 'self-employed'],
+      'Longer-tenure loans for travel, education, medical needs, and family celebrations with transparent pricing.',
+    audience: ['salaried'],
     link: '/solutions/personal-loans',
-    highlights: ['Instant digital KYC', 'Top-up in 6 months', 'Auto-pay setup'],
+    highlights: ['Top-up in 6 months', 'Digital KYC', 'App + WhatsApp servicing'],
+    range: '₹25K – ₹5L',
+    tenure: 'Tenure 6 – 48 months',
+    rate: 'From 13% p.a.',
+    ctaLabel: 'View personal loans',
   },
   {
     id: 'bnpl',
-    title: 'Buy Now Pay Later',
+    title: 'E-Fin EMIs / BNPL',
     summary:
-      'Split your purchases into bite-sized installments across 50+ partner stores without additional paperwork.',
+      'Embedded credit at online and offline checkouts to convert purchases into zero-cost or low-cost EMIs instantly.',
     audience: ['salaried', 'students'],
     link: '/solutions/buy-now-pay-later',
-    highlights: ['Zero-cost EMIs', 'One-click checkout', 'Rewarded repayments'],
+    highlights: ['Decisioning < 5 seconds', 'POS + app journeys', 'Unified dashboards for partners'],
+    range: '₹5K – ₹3L',
+    tenure: 'Tenure 3 – 24 months',
+    rate: 'Processing fee from 0%',
+    ctaLabel: 'Explore BNPL',
   },
   {
     id: 'two-wheeler',
     title: 'Two-Wheeler Finance',
     summary:
-      'Own your dream ride with minimal down payment, fast approvals, and bundled insurance options.',
+      'Dealership and OEM-integrated loans that cover bikes, scooters, and EVs with bundled insurance add-ons.',
     audience: ['salaried', 'self-employed', 'students'],
     link: '/solutions/two-wheeler-finance',
-    highlights: ['Doorstep documentation', 'Low down payment', 'Insurance concierge'],
+    highlights: ['Doorstep documentation', 'Down payment from 5%', 'Telematics-based loyalty'],
+    range: '₹40K – ₹5L',
+    tenure: 'Tenure 6 – 48 months',
+    rate: 'From 11.5% p.a.',
+    ctaLabel: 'See 2W journeys',
+  },
+  {
+    id: 'salary-advance',
+    title: 'Salary Advance / Corporate',
+    summary:
+      'Payroll-integrated liquidity for employee emergencies, relocations, and benefits with HR-grade dashboards.',
+    audience: ['salaried'],
+    link: '/offerings/salary-advance',
+    highlights: ['Plug & play APIs', 'Multi-entity support', 'Wellness analytics'],
+    range: '₹10K – ₹2L',
+    tenure: 'Tenure 1 – 12 months',
+    rate: 'Repay via payroll',
+    ctaLabel: 'Partner with us',
+  },
+  {
+    id: 'education',
+    title: 'Education & Upskilling Loans',
+    summary:
+      'Financing for certifications, post-graduation, and professional courses with moratorium options and device bundles.',
+    audience: ['salaried', 'students'],
+    link: '/offerings/education-loan',
+    highlights: ['Moratorium up to 6 months', 'Tuition + gadgets covered', 'Co-lending ready'],
+    range: '₹25K – ₹10L',
+    tenure: 'Tenure 6 – 60 months',
+    rate: 'From 12% p.a.',
+    ctaLabel: 'Fund learning',
+  },
+];
+
+const INDUSTRY_STACKS = [
+  {
+    badge: 'Retail',
+    title: 'Consumer Durable Finance',
+    copy: 'Unified POS, QR, and app journeys for electronics, furniture, and lifestyle chains.',
+    items: ['Zero-cost EMI campaigns', 'In-store digital KYC kits', 'Partner insights console'],
+  },
+  {
+    badge: 'Healthcare',
+    title: 'Medical & Wellness',
+    copy: 'Surgery, fertility, and wellness packages financed with hospital-assisted onboarding.',
+    items: ['Hospital desk widgets', 'Treatment-wise ticket sizes', 'Patient tracking & nudges'],
+  },
+  {
+    badge: 'Mobility',
+    title: 'EV & Auto',
+    copy: 'Financing layers for OEMs, dealer networks, and fleet partners to accelerate adoption.',
+    items: ['Telematics-linked offers', 'Insurance + accessories in one EMI', 'Inventory financing hooks'],
+  },
+  {
+    badge: 'Workplace',
+    title: 'Employer Programs',
+    copy: 'Salary-linked liquidity and card programs for enterprises, startups, and gig platforms.',
+    items: ['Payroll APIs', 'White-labelled apps', 'Employee affordability score'],
+  },
+];
+
+const PARTNER_SEGMENTS = [
+  { title: 'Electronics & Lifestyle', brands: ['Croma', 'Reliance Digital', 'Apple APR', 'Nykaa'] },
+  { title: 'Mobility & EV', brands: ['Ather', 'Hero Electric', 'Ola Electric', 'Kinetic'] },
+  { title: 'Healthcare', brands: ['Fortis', 'Cloudnine', 'Care Clinics', 'Sarva'] },
+  { title: 'E-commerce', brands: ['Amazon', 'Flipkart', 'Myntra', 'MakeMyTrip'] },
+];
+
+const JOURNEY_PHASES = [
+  {
+    badge: 'Acquire',
+    title: 'Acquisition',
+    copy: 'Geo-tagged lead routing, partner microsites, and assisted onboarding with multilingual support.',
+    steps: ['SDKs & hosted pages', 'Auto bureau & banking checks', 'Branch + WhatsApp handoff'],
+  },
+  {
+    badge: 'Serve',
+    title: 'Servicing',
+    copy: 'Omni-channel customer care teams with proactive nudges, statement downloads, and partner escalations.',
+    steps: ['Auto-pay nudges', 'Collections playbooks', 'Partner SLAs & dashboards'],
+  },
+  {
+    badge: 'Grow',
+    title: 'Analytics & retention',
+    copy: 'Portfolio intelligence to monitor DPD, repeat usage, and cross-sell opportunities.',
+    steps: ['Delinquency radar', 'Cohort-based insights', 'Rewards + referrals'],
   },
 ];
 
@@ -78,57 +198,67 @@ function SolutionsPage() {
 
   return (
     <div className="page solutions-page">
-      <header className="page-hero with-illustration">
-        <div className="page-hero-body">
-          <span className="badge">Solutions</span>
-          <h1>Choose the right credit plan for any milestone</h1>
+      <header className="solutions-hero">
+        <div className="solutions-hero__content">
+          <span className="badge">Credit solutions</span>
+          <h1>One platform for every borrower journey</h1>
           <p>
-            Efin offers a bouquet of credit products tailored to your lifestyle. Filter by your
-            profile and discover offers curated by our experts.
+            From instant cash to salary-linked liquidity, E-Fin builds responsible journeys that keep
+            approvals fast, operations lean, and experiences joyful. Filter by profile to explore
+            the right program.
           </p>
-
-          <div className="filter-pills">
-            <button
-              type="button"
-              className={`pill${selectedAudience === 'all' ? ' selected' : ''}`}
-              onClick={handleAudienceChange('all')}
-            >
-              All profiles
-            </button>
-            <button
-              type="button"
-              className={`pill${selectedAudience === 'salaried' ? ' selected' : ''}`}
-              onClick={handleAudienceChange('salaried')}
-            >
-              Salaried
-            </button>
-            <button
-              type="button"
-              className={`pill${selectedAudience === 'self-employed' ? ' selected' : ''}`}
-              onClick={handleAudienceChange('self-employed')}
-            >
-              Self employed
-            </button>
-            <button
-              type="button"
-              className={`pill${selectedAudience === 'students' ? ' selected' : ''}`}
-              onClick={handleAudienceChange('students')}
-            >
-              Students
-            </button>
+          <div className="audience-pills">
+            {AUDIENCE_FILTERS.map((filter) => (
+              <button
+                key={filter.id}
+                type="button"
+                className={selectedAudience === filter.id ? 'selected' : undefined}
+                onClick={handleAudienceChange(filter.id)}
+              >
+                {filter.label}
+              </button>
+            ))}
+          </div>
+          <div className="solution-metrics">
+            {SOLUTION_METRICS.map((metric) => (
+              <div key={metric.label}>
+                <strong>{metric.value}</strong>
+                <span>{metric.label}</span>
+              </div>
+            ))}
           </div>
         </div>
-        <SolutionsIllustration className="page-hero-illustration" />
+        <div className="solutions-hero__visual">
+          <SolutionsIllustration className="solutions-hero__illustration" />
+          <div className="solutions-hero__tile primary">
+            <span>Same-day disbursals</span>
+            <strong>93%</strong>
+            <p>Eligible cases funded within business hours.</p>
+          </div>
+          <div className="solutions-hero__tile secondary">
+            <span>Partner happiness</span>
+            <strong>4.8 / 5</strong>
+            <p>Average CSAT across OEM & HR partners.</p>
+          </div>
+        </div>
       </header>
 
-      <section className="section slim">
-        <ImageCarousel slides={carouselSlides} />
-      </section>
-
-      <section className="section">
-        <div className="grid three">
+      <section className="solutions-section">
+        <header className="section-heading">
+          <span className="eyebrow">Product stack</span>
+          <h2>Pick the journey that fits your customers</h2>
+          <p>
+            Each program is configurable with co-lending, white-labelling, and analytics hooks so
+            you can launch, test, and scale swiftly.
+          </p>
+        </header>
+        <div className="solution-grid">
           {filteredSolutions.map((solution) => (
             <article key={solution.id} className="solution-card">
+              <div className="solution-card__meta">
+                <span>{solution.range}</span>
+                <span>{solution.tenure}</span>
+              </div>
               <h3>{solution.title}</h3>
               <p>{solution.summary}</p>
               <ul>
@@ -136,9 +266,38 @@ function SolutionsPage() {
                   <li key={highlight}>{highlight}</li>
                 ))}
               </ul>
-              <Link className="primary-link" to={solution.link}>
-                View details →
-              </Link>
+              <div className="solution-card__footer">
+                <span>{solution.rate}</span>
+                <Link className="primary-link" to={solution.link}>
+                  {solution.ctaLabel} →
+                </Link>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section slim">
+        <ImageCarousel slides={carouselSlides} />
+      </section>
+
+      <section className="solutions-section industry-section">
+        <header className="section-heading">
+          <span className="eyebrow">Industry stacks</span>
+          <h2>Purpose-built programs for every partner</h2>
+          <p>Launch fast with pre-built flows for retail, mobility, healthcare, and enterprise ecosystems.</p>
+        </header>
+        <div className="industry-grid">
+          {INDUSTRY_STACKS.map((stack) => (
+            <article key={stack.title} className="industry-card">
+              <span className="badge muted">{stack.badge}</span>
+              <h3>{stack.title}</h3>
+              <p>{stack.copy}</p>
+              <ul>
+                {stack.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
             </article>
           ))}
         </div>
@@ -147,15 +306,15 @@ function SolutionsPage() {
       <section className="section split feature-ribbon">
         <div>
           <span className="badge">Service excellence</span>
-          <h2>Designed for scale without compromising the human touch</h2>
+          <h2>Scale responsibly without losing the human touch</h2>
           <p>
-            Whether you are an OEM, retailer, or DSA, Efin’s plug-and-play integrations and dedicated
-            partner desks ensure every customer journey is frictionless.
+            Dedicated pods co-create journeys with OEMs, retailers, and HR teams. APIs, SDKs, and
+            in-store toolkits ensure you can go live in weeks, not months.
           </p>
           <ul className="feature-list">
-            <li>API-first onboarding with options for white-label journeys.</li>
-            <li>Dedicated field verification teams across 150+ cities.</li>
-            <li>Paperless agreements with e-signature and video KYC support.</li>
+            <li>API-first onboarding and white-label options.</li>
+            <li>Field verification teams across 150+ cities.</li>
+            <li>Paperless agreements with e-sign and video KYC.</li>
           </ul>
           <Link className="primary-link" to="/support#contact">
             Request a partnership walkthrough →
@@ -163,51 +322,38 @@ function SolutionsPage() {
         </div>
         <div className="metrics-card">
           <div>
-            <strong>93%</strong>
-            <span>Same-day disbursals for eligible cases</span>
+            <strong>8,000+</strong>
+            <span>Active merchants & alliances</span>
           </div>
           <div>
             <strong>45 mins</strong>
-            <span>Average end-to-end durable loan journey</span>
+            <span>Average durable loan journey</span>
           </div>
           <div>
-            <strong>4.8 / 5</strong>
-            <span>Partner satisfaction score FY24</span>
+            <strong>99.5%</strong>
+            <span>Platform uptime</span>
           </div>
         </div>
       </section>
 
-      <section className="section">
-        <h2>Pre-approved partner programs</h2>
-        <p className="section-lead">
-          Finance big-ticket purchases instantly across electronics, furniture, and lifestyle
-          brands with zero additional charges.
-        </p>
+      <section className="section partner-section">
+        <header className="section-heading">
+          <span className="eyebrow">Partner universe</span>
+          <h2>Pre-approved programs across categories</h2>
+          <p className="section-lead">
+            Embed E-Fin credit across online and offline channels to boost conversion, repeat usage, and
+            NPS.
+          </p>
+        </header>
         <div className="partner-grid">
-          <div>
-            <strong>Electronics</strong>
-            <span>Croma</span>
-            <span>Reliance Digital</span>
-            <span>Vijay Sales</span>
-          </div>
-          <div>
-            <strong>Appliances</strong>
-            <span>LG</span>
-            <span>Samsung</span>
-            <span>Bajaj</span>
-          </div>
-          <div>
-            <strong>Lifestyle</strong>
-            <span>Shoppers Stop</span>
-            <span>Nykaa</span>
-            <span>Titan</span>
-          </div>
-          <div>
-            <strong>E-commerce</strong>
-            <span>Amazon</span>
-            <span>Flipkart</span>
-            <span>Myntra</span>
-          </div>
+          {PARTNER_SEGMENTS.map((segment) => (
+            <div key={segment.title}>
+              <strong>{segment.title}</strong>
+              {segment.brands.map((brand) => (
+                <span key={brand}>{brand}</span>
+              ))}
+            </div>
+          ))}
         </div>
       </section>
 
@@ -215,18 +361,18 @@ function SolutionsPage() {
         <span className="badge">Lifecycle support</span>
         <h2>One platform from acquisition to retention</h2>
         <div className="journey-grid">
-          <article>
-            <h3>Acquisition</h3>
-            <p>Geo-tagged lead distribution, digital pre-screening, and branch-assisted onboarding.</p>
-          </article>
-          <article>
-            <h3>Servicing</h3>
-            <p>Omni-channel collections, autopay nudges, and contextual cross-sell programs.</p>
-          </article>
-          <article>
-            <h3>Analytics</h3>
-            <p>Partner dashboards that highlight conversion funnels, DPD trends, and repeat usage.</p>
-          </article>
+          {JOURNEY_PHASES.map((phase) => (
+            <article key={phase.title}>
+              <span>{phase.badge}</span>
+              <h3>{phase.title}</h3>
+              <p>{phase.copy}</p>
+              <ul>
+                {phase.steps.map((step) => (
+                  <li key={step}>{step}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
         </div>
       </section>
     </div>

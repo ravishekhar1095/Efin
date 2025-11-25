@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import logo from '../assets/efin-logo.svg';
 import landingPages, { NAV_STRUCTURE } from '../content/landingPages';
 import './Header.css';
 
@@ -65,11 +64,13 @@ function Header() {
     }
   };
 
+  const logoSrc = `${process.env.PUBLIC_URL || ''}/logo.png`;
+
   return (
     <header className="fibe-header" ref={headerRef}>
       <div className="header-shell">
         <Link to="/" className="brand-mark" onClick={handleClose}>
-          <img src={logo} alt="E-Fin" />
+          <img src={logoSrc} alt="E-Fin" className="brand-logo" />
         </Link>
 
         <button
@@ -118,20 +119,14 @@ function Header() {
           </ul>
           <div className="drawer-actions">
             <Link className="ghost-btn" to="/support/apply" onClick={handleClose}>
-              Download E-Fin
-            </Link>
-            <Link className="primary-btn" to="/support/login" onClick={handleClose}>
-              Sign In
+              Download app
             </Link>
           </div>
         </nav>
 
         <div className="nav-actions">
           <Link className="ghost-btn" to="/support/apply" onClick={handleClose}>
-            Download E-Fin
-          </Link>
-          <Link className="primary-btn" to="/support/login" onClick={handleClose}>
-            Sign In
+            Download app
           </Link>
         </div>
       </div>

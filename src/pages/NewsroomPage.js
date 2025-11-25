@@ -23,8 +23,8 @@ const MEDIA_KIT_LINKS = [
 ];
 
 const PRESS_CONTACTS = [
-  { label: 'Media desk', value: 'press@efin.co.in', href: 'mailto:press@efin.co.in' },
-  { label: 'Partnerships', value: 'alliances@efin.co.in', href: 'mailto:alliances@efin.co.in' },
+  { label: 'Media desk', value: 'press@e-fin.in', href: 'mailto:press@e-fin.in' },
+  { label: 'Partnerships', value: 'alliances@e-fin.in', href: 'mailto:alliances@e-fin.in' },
 ];
 
 function NewsroomPage() {
@@ -69,7 +69,7 @@ function NewsroomPage() {
         <div className="contact-cta">
           <div>
             <h3>Press enquiries</h3>
-            <p>We are available for journalist briefings, fintech roundtables, and policy discussions.</p>
+            <p>We are available for journalist brifibegs, fintech roundtables, and policy discussions.</p>
           </div>
           <div className="contact-buttons">
             {PRESS_CONTACTS.map((contact) => (

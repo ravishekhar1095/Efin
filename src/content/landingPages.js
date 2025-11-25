@@ -1,6 +1,5 @@
 import instantCashIcon from '../assets/product-icons/instant-cash-loan.png';
 import personalLoanIcon from '../assets/product-icons/personal-loan.png';
-import loanAgainstIcon from '../assets/product-icons/loan-against-mf.png';
 import emiStoreIcon from '../assets/product-icons/emi-store.png';
 import creditScoreIcon from '../assets/offerings/credit-score.png';
 import financialWellnessIcon from '../assets/offerings/financial-wellness.png';
@@ -20,6 +19,51 @@ const LANDING_PAGES = {
     excerpt: 'Get quick cash loans of up to ₹5 lacs in 2 minutes',
     description:
       'Apply 24x7, finish digital KYC, and have cash transferred directly to your bank account without paperwork.',
+    heroBadge: 'Cash in 2 minutes',
+    highlights: [
+      {
+        title: 'Lightning-fast disbursal',
+        description: 'Apply in under 2 minutes with real-time verification and direct credit to your bank.',
+      },
+      {
+        title: 'EMIs that flex with you',
+        description: 'Pick tenures from 3-36 months with transparent APR shown before you commit.',
+      },
+      {
+        title: 'No hidden catches',
+        description: 'Zero pre-closure charges, simple documentation, and support whenever you need it.',
+      },
+    ],
+    steps: [
+      { title: 'Check eligibility', description: 'Share PAN and basic details to view your approved limit instantly.' },
+      { title: 'Finish digital KYC', description: 'Upload documents and verify identity without paperwork or branch visits.' },
+      { title: 'Choose your plan', description: 'Pick a loan amount and tenure that keeps EMIs comfortable.' },
+      { title: 'Cash hits your bank', description: 'Accept and receive money straight into your account in minutes.' },
+    ],
+    assurance: [
+      { title: 'Transparent pricing', description: 'Know your APR, fees, and total cost before you accept.' },
+      { title: 'Zero pre-closure charges', description: 'Close early whenever you want without paying a penalty.' },
+      { title: 'Human support on standby', description: 'Talk to a specialist if you need help mid-journey.' },
+    ],
+    faqs: [
+      {
+        q: 'Who can apply for an instant cash loan?',
+        a: 'Indian residents aged 21+ with a steady income source and valid KYC documents are eligible to apply.',
+      },
+      {
+        q: 'How fast is the disbursal?',
+        a: 'Most customers complete verification and see cash in their bank within minutes of accepting the offer.',
+      },
+      {
+        q: 'What are the charges if I close early?',
+        a: 'There are no pre-closure charges; you only pay the outstanding principal and any accrued interest.',
+      },
+      {
+        q: 'Do I need collateral or paperwork?',
+        a: 'No collateral is needed. Complete the digital KYC flow and upload requested documents online.',
+      },
+    ],
+    helperNote: 'Fully digital when you want it, with human support when you need it.',
     bullets: ['₹8K – ₹5L ticket size', 'Tenure options from 3 to 36 months', 'Zero pre-closure charges'],
     stats: [
       { label: 'Processing time', value: '< 2 mins' },
@@ -46,19 +90,43 @@ const LANDING_PAGES = {
     ctaPrimary: sharedCtas.apply,
     ctaSecondary: sharedCtas.download,
   },
-  'offerings/loan-against-mutual-funds': {
-    title: 'Loan Against Mutual Funds',
-    category: 'Our Offerings',
-    excerpt: 'Borrow using mutual fund holdings in minutes',
+  'loans/two-wheeler-loan': {
+    title: 'Two-Wheeler Loan',
+    category: 'Loans',
+    excerpt: 'Ride home your next bike or scooter with minimal down payment',
     description:
-      'Pledge units digitally, unlock cash without redeeming investments, and continue earning market returns.',
-    bullets: ['Works with leading AMCs', 'Only pay on the amount used', 'Low utilisation charges'],
-    stats: [
-      { label: 'Loan-to-value', value: 'Up to 60%' },
-      { label: 'Setup time', value: '< 10 mins' },
-      { label: 'Documentation', value: 'Paperless' },
+      'Fund petrol or electric two-wheelers with bundled insurance, fast approvals, and doorstep documentation support.',
+    bullets: [
+      'Up to 95% on-road price financed including insurance',
+      'Flexible EMI dates aligned to your salary cycle',
+      'Top-up options for riding gear and accessories',
     ],
-    image: loanAgainstIcon,
+    stats: [
+      { label: 'Ticket size', value: '₹40K – ₹5L' },
+      { label: 'Tenure', value: '6 – 48 months' },
+      { label: 'Approval time', value: '< 2 hours' },
+    ],
+    image: emiStoreIcon,
+    ctaPrimary: sharedCtas.apply,
+    ctaSecondary: { label: 'Explore 2W finance', to: '/solutions/two-wheeler-finance' },
+  },
+  'loans/three-wheeler-loan': {
+    title: 'Three-Wheeler Loan',
+    category: 'Loans',
+    excerpt: 'Finance passenger and cargo 3-wheelers with business-friendly EMIs',
+    description:
+      'Grow your transport or delivery business with tailored financing that covers registration, insurance, and vehicle add-ons.',
+    bullets: [
+      'Funding for passenger, cargo, and electric 3-wheelers',
+      'Doorstep KYC and e-mandate for quick disbursals',
+      'Seasonal repayment flexibility for fleet owners',
+    ],
+    stats: [
+      { label: 'Ticket size', value: '₹80K – ₹6L' },
+      { label: 'Tenure', value: '12 – 60 months' },
+      { label: 'Processing', value: 'Same-day decisions' },
+    ],
+    image: instantCashIcon,
     ctaPrimary: sharedCtas.apply,
     ctaSecondary: sharedCtas.eligibility,
   },
@@ -191,20 +259,20 @@ const LANDING_PAGES = {
     ctaSecondary: sharedCtas.apply,
     template: 'calculator',
   },
-  'resources/instant-loan-emi-calculator': {
-    title: 'Instant Loan EMI Calculator',
+  'resources/two-three-wheeler-emi-calculator': {
+    title: '2 & 3 Wheeler EMI Calculator',
     category: 'Loan Calculators',
-    excerpt: 'Know your EMI amount in seconds to plan finances better',
+    excerpt: 'Estimate EMIs for scooters, bikes, and three-wheelers',
     description:
-      'Model short-term cash loans and see what the repayment looks like before you tap on Apply.',
-    bullets: ['Auto-saves your last inputs', 'Shows total interest payable', 'Mobile-ready UI'],
+      'Check repayments for petrol or electric two-wheelers and three-wheelers. Adjust the ticket size, interest rate, and tenure to match the vehicle you have in mind.',
+    bullets: ['Covers ICE & EV models', 'Shows total interest payable', 'Ready for dealer handovers'],
     stats: [
-      { label: 'Min amount', value: '₹5K' },
-      { label: 'Max tenure', value: '24 months' },
-      { label: 'APR range', value: '13 – 30%' },
+      { label: 'Max amount', value: '₹6L' },
+      { label: 'Tenure range', value: '6 – 48 months' },
+      { label: 'Use cases', value: 'Personal & commercial' },
     ],
     image: eligibilityIcon,
-    ctaPrimary: { label: 'Try calculator', to: '/resources/instant-loan-emi-calculator' },
+    ctaPrimary: { label: 'Try calculator', to: '/resources/two-three-wheeler-emi-calculator' },
     ctaSecondary: sharedCtas.apply,
     template: 'calculator',
   },
@@ -257,13 +325,14 @@ const LANDING_PAGES = {
     image: instantCashIcon,
     ctaPrimary: { label: 'Visit blog', to: '/#blog' },
     ctaSecondary: sharedCtas.download,
+    template: 'blogs',
   },
   'learn/dictionary': {
     title: 'Financial Dictionary',
     category: 'Learn',
     excerpt: 'Look up formulas, concepts, and money terms',
     description:
-      'Browse A-Z definitions, formulas, and ratios so you always know the jargon before you sign.',
+      'Browse A-Z dfibeitions, formulas, and ratios so you always know the jargon before you sign.',
     bullets: ['900+ terms', 'Searchable index', 'Examples & use-cases'],
     stats: [
       { label: 'Latest update', value: 'Oct 2025' },
@@ -304,10 +373,10 @@ const LANDING_PAGES = {
     stats: [
       { label: 'Customer focus', value: 'Young professionals & MSMEs' },
       { label: 'Mission', value: 'Driving affordability at scale' },
-      { label: 'Support', value: '+91-9997842548 • care@efin.co.in' },
+      { label: 'Support', value: '+91-9997842548 • care@fibe.in' },
     ],
     image: personalLoanIcon,
-    ctaPrimary: { label: 'Discover journey', to: '/why-efin' },
+    ctaPrimary: { label: 'Discover journey', to: '/why-fibe' },
     ctaSecondary: sharedCtas.apply,
   },
   'about/careers': {
@@ -365,25 +434,20 @@ const LANDING_PAGES = {
 };
 
 export const NAV_STRUCTURE = [
-  { label: 'Loans', items: ['loans/instant-cash-loan', 'loans/personal-loan'] },
   {
-    label: 'Our Offerings',
+    label: 'Loans',
     items: [
-      'offerings/loan-against-mutual-funds',
-      'offerings/fixed-deposit',
-      'offerings/salary-advance',
-      'offerings/fibe-axis-bank-credit-card',
-      'offerings/bnpl',
-      'offerings/medical-loan',
-      'offerings/education-loan',
-      'offerings/solar-loan',
+      'loans/instant-cash-loan',
+      'loans/personal-loan',
+      'loans/two-wheeler-loan',
+      'loans/three-wheeler-loan',
     ],
   },
   {
     label: 'Loan Calculators',
     items: [
       'resources/personal-loan-emi-calculator',
-      'resources/instant-loan-emi-calculator',
+      'resources/two-three-wheeler-emi-calculator',
       'resources/eligibility-calculator',
       'resources/check-credit-score',
     ],

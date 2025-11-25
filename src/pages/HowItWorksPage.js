@@ -25,7 +25,7 @@ const journeySlides = [
     badge: 'Digital first',
     title: 'Apply anytime, anywhere',
     description:
-      'Start from the web or Efin app, switch to branch support when needed, and resume from exactly where you left.',
+      'Start from the web or E-Fin app, switch to branch support when needed, and resume from exactly where you left.',
     list: ['Progress autosaved securely', 'Assisted journeys for seniors'],
     background: 'linear-gradient(135deg, #56ccf2, #2f80ed)',
     imageLabel: 'Apply',
@@ -60,7 +60,7 @@ function HowItWorksPage() {
           <span className="badge">How It Works</span>
           <h1>Smart credit in three smooth stages</h1>
           <p>
-            Efin combines intuitive design, paperless verification, and transparent communication
+            E-Fin combines intuitive design, paperless verification, and transparent communication
             so you stay in control throughout the borrowing journey.
           </p>
         </div>

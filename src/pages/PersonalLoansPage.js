@@ -41,8 +41,8 @@ function PersonalLoansPage() {
           <span className="badge">Personal Loans</span>
           <h1>Finance life&apos;s big decisions without the wait</h1>
           <p>
-            Whether it&apos;s medical expenses, education fees, or dream vacations, Efin personal
-            loans give you fast access to funds with predictable EMIs and absolutely no hidden charges.
+            Whether it&apos;s medical expenses, education fees, or dream vacations, E-Fin personal loans
+            give you fast access to funds with predictable EMIs and absolutely no hidden charges.
           </p>
         </div>
         <HeroIllustration className="page-hero-illustration" />
@@ -54,7 +54,7 @@ function PersonalLoansPage() {
 
       <section className="section split">
         <div>
-          <h2>Why borrowers love Efin personal loans</h2>
+          <h2>Why borrowers love E-Fin personal loans</h2>
           <ul className="feature-list">
             <li>Instant approvals up to ₹5,00,000 with minimal documentation.</li>
             <li>Flexible tenure between 6 and 60 months based on your comfort.</li>
@@ -143,8 +143,8 @@ function PersonalLoansPage() {
         <div>
           <h2>Ready to apply?</h2>
           <p>
-            Upload your documents, lock in the EMI plan that works best, and track every stage inside the Efin app.
-            Our loan specialists are available over call and WhatsApp for any support.
+            Upload your documents, lock in the EMI plan that works best, and track every stage inside the
+            E-Fin app. Our loan specialists are available over call and WhatsApp for any support.
           </p>
         </div>
         <Link className="primary-btn" to="/support/apply">

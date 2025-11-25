@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 56" role="img" aria-label="E-Fin logo">
+  <defs>
+    <linearGradient id="fibeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff5d36" />
+      <stop offset="100%" stop-color="#ff1f74" />
+    </linearGradient>
+    <linearGradient id="fibeText" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#111322" />
+      <stop offset="100%" stop-color="#4c2b6f" />
+    </linearGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <rect x="0" y="0" width="56" height="56" rx="18" fill="url(#fibeGradient)" />
+    <path
+      d="M25.5 15h12.4a2.1 2.1 0 0 1 2.1 2.1v4.4h-10v5.5h8v6.5h-8v7.8H24V17.1A2.1 2.1 0 0 1 26.1 15Z"
+      fill="#fff"
+      opacity=".95"
+    />
+    <text
+      x="72"
+      y="37"
+      font-family="'Space Grotesk','Inter','Poppins',sans-serif"
+      font-size="30"
+      font-weight="600"
+      fill="url(#fibeText)"
+    >
+      fibe
+    </text>
+  </g>
+</svg>

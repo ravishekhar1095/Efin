@@ -49,10 +49,10 @@ function TwoWheelerPage() {
       <header className="page-hero with-illustration">
         <div className="page-hero-body">
           <span className="badge">Two Wheeler Finance</span>
-          <h1>Fast-track your ride with Efin</h1>
+          <h1>Fast-track your ride with E-Fin</h1>
           <p>
             Choose from 100+ dealer partners and ride home your new scooter or bike within 48 hours.
-            Efin covers insurance, accessories, and registration in one convenient plan.
+            E-Fin covers insurance, accessories, and registration in one convenient plan.
           </p>
         </div>
         <VehicleIllustration className="page-hero-illustration" />
@@ -76,8 +76,8 @@ function TwoWheelerPage() {
           <div className="cta-card">
             <strong>Prefer an in-store experience?</strong>
             <p>
-              Visit the nearest Efin partner branch to get on-road pricing, schedule a test
-              ride, and complete documentation in one sitting.
+              Visit the nearest E-Fin partner branch to get on-road pricing, schedule a test ride, and
+              complete documentation in one sitting.
             </p>
             <Link className="primary-btn" to="/support#branch">
               Locate a branch
@@ -158,7 +158,7 @@ function TwoWheelerPage() {
           <div className="timeline-item">
             <span className="step-number">4</span>
             <h3>Ride out</h3>
-            <p>Track delivery in the Efin app and schedule your first service reminders.</p>
+            <p>Track delivery in the E-Fin app and schedule your first service reminders.</p>
           </div>
         </div>
       </section>

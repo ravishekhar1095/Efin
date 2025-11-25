@@ -8,7 +8,7 @@ function BrandCarousel({ brands = [] }) {
   const repeated = [...brands, ...brands];
 
   return (
-    <div className="brand-carousel" aria-label="Efin partners">
+    <div className="brand-carousel" aria-label="E-Fin partners">
       <div className="brand-carousel-track">
         {repeated.map((brand, index) => (
           <BrandLogo key={`${brand.name}-${index}`} {...brand} />

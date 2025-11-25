@@ -5,13 +5,30 @@ function InfoPage({ page }) {
     return null;
   }
 
-  const { category, title, description, bullets = [], stats = [], image, ctaPrimary, ctaSecondary } = page;
+  const {
+    category,
+    title,
+    description,
+    bullets = [],
+    stats = [],
+    image,
+    ctaPrimary,
+    ctaSecondary,
+    heroBadge,
+    highlights = [],
+    steps = [],
+    faqs = [],
+    assurance = [],
+    helperNote,
+  } = page;
+
+  const displayHighlights = highlights.length > 0 ? highlights : bullets.map((text) => ({ title: text }));
 
   return (
     <div className="page info-page">
       <section className="info-hero">
-        <div className="info-copy">
-          {category && <span className="eyebrow">{category}</span>}
+        <div className="info-copy info-hero-card">
+          {(heroBadge || category) && <span className="info-pill">{heroBadge || category}</span>}
           <h1>{title}</h1>
           <p>{description}</p>
           <div className="info-cta">
@@ -26,17 +43,30 @@ function InfoPage({ page }) {
               </Link>
             )}
           </div>
-          {bullets.length > 0 && (
-            <ul className="info-bullets">
-              {bullets.map((bullet) => (
-                <li key={bullet}>{bullet}</li>
+          {displayHighlights.length > 0 && (
+            <div className="info-highlight-chips">
+              {displayHighlights.slice(0, 4).map((item) => (
+                <span key={item.title || item}>{item.title || item}</span>
               ))}
-            </ul>
+            </div>
           )}
+          {helperNote && <p className="info-helper">{helperNote}</p>}
         </div>
         {image && (
-          <div className="info-visual">
-            <img src={image} alt={`${title} visual`} loading="lazy" />
+          <div className="info-visual info-hero-visual">
+            <div className="info-visual-card">
+              <img src={image} alt={`${title} visual`} loading="lazy" />
+              {stats.length > 0 && (
+                <div className="info-visual-stats">
+                  {stats.slice(0, 3).map((stat) => (
+                    <div key={stat.label}>
+                      <strong>{stat.value}</strong>
+                      <span>{stat.label}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         )}
       </section>
@@ -48,6 +78,79 @@ function InfoPage({ page }) {
               <span>{stat.label}</span>
             </div>
           ))}
+        </section>
+      )}
+      {displayHighlights.length > 0 && (
+        <section className="info-section">
+          <div className="section-heading">
+            <p className="eyebrow">What to expect</p>
+            <h2>Designed to make {title} feel effortless</h2>
+          </div>
+          <div className="info-value-grid">
+            {displayHighlights.map((item, index) => (
+              <article className="info-value-card" key={item.title || item}>
+                <span className="info-value-index">0{index + 1}</span>
+                <h3>{item.title || item}</h3>
+                {item.description && <p>{item.description}</p>}
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+      {steps.length > 0 && (
+        <section className="info-section info-steps">
+          <div className="section-heading">
+            <p className="eyebrow">How it works</p>
+            <h2>From tap to cash in your account</h2>
+          </div>
+          <div className="info-step-grid">
+            {steps.map((step, index) => (
+              <div className="info-step" key={step.title}>
+                <span className="info-step-number">{index + 1}</span>
+                <div>
+                  <h3>{step.title}</h3>
+                  {step.description && <p>{step.description}</p>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+      {assurance.length > 0 && (
+        <section className="info-section">
+          <div className="info-guardrail">
+            <div>
+              <p className="eyebrow">Customer-first guardrails</p>
+              <h3>Built-in protections to keep borrowing transparent</h3>
+            </div>
+            <div className="info-guardrail-grid">
+              {assurance.map((item) => (
+                <div className="info-guardrail-item" key={item.title}>
+                  <span className="info-bullet-dot" aria-hidden="true" />
+                  <div>
+                    <strong>{item.title}</strong>
+                    <p>{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+      {faqs.length > 0 && (
+        <section className="info-section info-faq">
+          <div className="section-heading">
+            <p className="eyebrow">FAQs</p>
+            <h2>{title} in plain words</h2>
+          </div>
+          <div className="faq-grid">
+            {faqs.map((faq) => (
+              <details key={faq.q}>
+                <summary>{faq.q}</summary>
+                <p>{faq.a}</p>
+              </details>
+            ))}
+          </div>
         </section>
       )}
     </div>

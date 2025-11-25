@@ -26,7 +26,7 @@ const bnplSlides = [
     badge: 'Healthcare & Wellness',
     title: 'Prioritise health with easy instalments',
     description:
-      'From dental procedures to fitness memberships, Efin BNPL covers essential spends with assured support.',
+      'From dental procedures to fitness memberships, E-Fin BNPL covers essential spends with assured support.',
     list: ['No-cost EMIs up to 12 months', 'Pre-approved upgrades for family members'],
     background: 'linear-gradient(135deg, #00cec9, #0984e3)',
     imageLabel: 'Care',
@@ -50,8 +50,8 @@ function BnplPage() {
           <span className="badge">Buy Now Pay Later</span>
           <h1>Shop now, split payments with zero stress</h1>
           <p>
-            Efin BNPL lets you convert any purchase into easy monthly installments at checkout.
-            Enjoy zero-cost EMIs on partner stores and instant approvals on the Efin app.
+            E-Fin BNPL lets you convert any purchase into easy monthly installments at checkout.
+            Enjoy zero-cost EMIs on partner stores and instant approvals on the E-Fin app.
           </p>
         </div>
         <ShoppingIllustration className="page-hero-illustration" />
@@ -67,7 +67,7 @@ function BnplPage() {
           <article>
             <h3>Scan &amp; select EMI</h3>
             <p>
-              Scan the QR code at partner stores or choose Efin in online checkout to view EMI
+              Scan the QR code at partner stores or choose E-Fin in online checkout to view EMI
               options tailored for you.
             </p>
           </article>
@@ -81,7 +81,7 @@ function BnplPage() {
           <article>
             <h3>Track repayments</h3>
             <p>
-              Manage all EMIs inside the Efin app with auto reminders, statement downloads, and
+              Manage all EMIs inside the E-Fin app with auto reminders, statement downloads, and
               upgrade offers.
             </p>
           </article>
@@ -93,7 +93,7 @@ function BnplPage() {
           <span className="badge">Checkout intelligence</span>
           <h2>Seamless journeys for customers and store staff</h2>
           <p>
-            Efin BNPL integrates across POS systems, e-commerce checkouts, and WhatsApp commerce flows to ensure
+            E-Fin BNPL integrates across POS systems, e-commerce checkouts, and WhatsApp commerce flows to ensure
             minimal friction and higher conversion.
           </p>
           <ul className="feature-list">
@@ -109,7 +109,7 @@ function BnplPage() {
           </div>
           <div>
             <strong>40 sec</strong>
-            <span>Median checkout time with Efin BNPL</span>
+            <span>Median checkout time with E-Fin BNPL</span>
           </div>
           <div>
             <strong>₹3,200</strong>
@@ -159,7 +159,7 @@ function BnplPage() {
 
       <section className="section cta-banner">
         <div>
-        <h2>Activate Efin BNPL in your store</h2>
+        <h2>Activate E-Fin BNPL in your store</h2>
           <p>
             Get a dedicated relationship manager, staff training, and performance analytics from day one. Reach out to
             build a co-branded experience that delights your customers.

@@ -19,6 +19,8 @@ function CreditScoreWidget() {
     onTimePayments: 90,
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isChecking, setIsChecking] = useState(false);
+  const [hasChecked, setHasChecked] = useState(false);
 
   const derivedScore = useMemo(() => {
     const base = 600;
@@ -39,15 +41,22 @@ function CreditScoreWidget() {
       [name]:
         ['creditCards', 'loans', 'onTimePayments'].includes(name) ? Number(value) : value.toUpperCase(),
     }));
-    if (submitted) {
-      setSubmitted(false);
-    }
+    setSubmitted(false);
+    setHasChecked(false);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSubmitted(true);
+    setIsChecking(true);
+    window.setTimeout(() => {
+      setIsChecking(false);
+      setSubmitted(true);
+      setHasChecked(true);
+    }, 800);
   };
+
+  const displayScore = hasChecked ? derivedScore : '---';
+  const displayLabel = hasChecked ? scoreLabel : 'Ready to check';
 
   return (
     <div className="credit-score-widget">
@@ -127,8 +136,8 @@ function CreditScoreWidget() {
             <span>100%</span>
           </div>
         </label>
-        <button type="submit" className="primary-btn">
-          Check score
+        <button type="submit" className="primary-btn" disabled={isChecking}>
+          {isChecking ? 'Checking...' : 'Check score'}
         </button>
         <p className="form-note">
           We respect your privacy. Submitting this simulation does not impact your real credit score.
@@ -137,17 +146,21 @@ function CreditScoreWidget() {
 
       <div className="credit-score-result">
         <div className="score-circle">
-          <strong>{derivedScore}</strong>
+          <strong>{displayScore}</strong>
           <span>/900</span>
         </div>
-        <h3>{scoreLabel}</h3>
+        <h3>{displayLabel}</h3>
         <p>
-          {scoreLabel === 'Excellent'
-            ? 'Great job! You are likely to unlock the best rates with E-Fin.'
-            : 'Improve your standing by keeping utilisation low and paying on time.'}
+          {hasChecked
+            ? scoreLabel === 'Excellent'
+              ? 'Great job! You are likely to unlock the best rates with E-Fin.'
+              : 'Improve your standing by keeping utilisation low and paying on time.'
+            : 'Submit the form to see your simulated range and get improvement tips.'}
         </p>
         {submitted && (
-          <div className="success-banner">We’ve sent a detailed report to your inbox.</div>
+          <div className="success-banner" aria-live="polite">
+            We’ve sent a detailed report to your inbox.
+          </div>
         )}
       </div>
     </div>

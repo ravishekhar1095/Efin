@@ -80,11 +80,9 @@ function ApplyPage() {
         <div>
           <span className="eyebrow">Apply with E-Fin</span>
           <h1>Request your personalised offer</h1>
-          <p>
-            Share a few details, select the product you&apos;re interested in, and our advisors will call
-            you back with the best-fit plan. It takes under two minutes and doesn&apos;t impact your credit
-            score.
-          </p>
+          <p>Welcome! Please share a few details to get started.</p>
+          <p>Our advisors will call you back with a plan that fits your needs.</p>
+          <p>It takes under two minutes and won't impact your credit score.</p>
         </div>
         <div className="apply-highlights">
           {APPLY_STATS.map((item) => (
@@ -118,7 +116,7 @@ function ApplyPage() {
                 type="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="you@efin.co.in"
+                placeholder="you@e-fin.in"
                 required
               />
             </label>
@@ -281,7 +279,7 @@ function ApplyPage() {
             <h3>Need help?</h3>
             <p>Talk to our advisors for faster onboarding or custom loan structures.</p>
             <a href="tel:+919997842548">+91-9997842548</a>
-            <a href="mailto:care@efin.co.in">care@efin.co.in</a>
+            <a href="mailto:care@e-fin.in">care@e-fin.in</a>
           </div>
         </aside>
       </section>
