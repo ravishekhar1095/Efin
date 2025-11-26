@@ -16,10 +16,16 @@ const LANDING_PAGES = {
   'loans/instant-cash-loan': {
     title: 'Instant Cash Loan',
     category: 'Loans',
+    theme: 'cash',
     excerpt: 'Get quick cash loans of up to ₹5 lacs in 2 minutes',
     description:
       'Apply 24x7, finish digital KYC, and have cash transferred directly to your bank account without paperwork.',
     heroBadge: 'Cash in 2 minutes',
+    speedFacts: [
+      { label: 'Approval', value: '< 2 mins' },
+      { label: 'KYC', value: 'Fully digital' },
+      { label: 'Disbursal', value: 'Instant to bank' },
+    ],
     highlights: [
       {
         title: 'Lightning-fast disbursal',
@@ -64,6 +70,11 @@ const LANDING_PAGES = {
       },
     ],
     helperNote: 'Fully digital when you want it, with human support when you need it.',
+    quickActions: [
+      { title: 'Pre-approve in a tap', description: 'Check eligibility and view your limit before sharing documents.', icon: '⚡' },
+      { title: 'Pick EMI date', description: 'Align repayment to your salary cycle from day one.', icon: '🗓️' },
+      { title: 'Top-up ready', description: 'Eligible customers can top up mid-tenure without redoing KYC.', icon: '🔁' },
+    ],
     bullets: ['₹8K – ₹5L ticket size', 'Tenure options from 3 to 36 months', 'Zero pre-closure charges'],
     stats: [
       { label: 'Processing time', value: '< 2 mins' },
@@ -356,8 +367,9 @@ const LANDING_PAGES = {
       { label: 'Avg session', value: '6 mins' },
     ],
     image: creditScoreIcon,
-    ctaPrimary: { label: 'Start quiz', to: '/support' },
+    ctaPrimary: { label: 'Start quiz', to: '/learn/quiz' },
     ctaSecondary: sharedCtas.download,
+    template: 'quiz',
   },
   about: {
     title: 'About E-Fin',

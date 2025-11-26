@@ -21,6 +21,7 @@ import CreditScorePage from './pages/calculators/CreditScorePage';
 import CareersPage from './pages/CareersPage';
 import NewsroomPage from './pages/NewsroomPage';
 import BlogsPage from './pages/BlogsPage';
+import QuizPage from './pages/QuizPage';
 
 function App() {
   return (
@@ -59,6 +60,9 @@ function App() {
             }
             if (page.template === 'blogs') {
               return <Route key={path} path={path} element={<BlogsPage />} />;
+            }
+            if (page.template === 'quiz') {
+              return <Route key={path} path={path} element={<QuizPage />} />;
             }
             return <Route key={path} path={path} element={<InfoPage page={page} />} />;
           })}

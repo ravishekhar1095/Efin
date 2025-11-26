@@ -90,19 +90,29 @@ const WHY_POINTS = [
   {
     title: 'Responsible credit',
     copy: 'Handle all your last-minute expenses like a pro and repay at your pace.',
+    icon: '✅',
   },
   {
     title: 'Transparent journey',
     copy: 'Crystal clear pricing with repayment schedules shared upfront.',
+    icon: '🔍',
   },
   {
     title: 'Always-on support',
     copy: 'Multilingual support teams, WhatsApp assistance and in-app chat.',
+    icon: '🤝',
   },
   {
     title: 'Secure by design',
     copy: 'Bank-grade encryption and RBI-compliant processes keep you safe.',
+    icon: '🛡️',
   },
+];
+
+const WHY_METRICS = [
+  { value: '< 2 mins', label: 'Avg approval time' },
+  { value: '8 languages', label: 'Support coverage' },
+  { value: '₹0', label: 'Pre-closure fee' },
 ];
 
 const TESTIMONIALS = [
@@ -111,18 +121,24 @@ const TESTIMONIALS = [
       'I met with an emergency and E-Fin helped me clear hospital bills in under 10 minutes. The cash was in my account before I left the desk.',
     author: 'Subham Pawar',
     tag: 'Instant loan in minutes',
+    role: 'Medical emergency borrower',
+    image: 'https://images.unsplash.com/photo-1582719478248-70e57188f5b5?auto=format&fit=crop&w=600&q=80',
   },
   {
     quote:
       'The entire process was fast and smooth. I applied online, uploaded KYC and the loan hit my bank on the same day.',
     author: 'Sahitya Goswami',
     tag: 'Quick and easy',
+    role: 'Personal loan customer',
+    image: 'https://images.unsplash.com/photo-1483478550801-ceba5fe50e8e?auto=format&fit=crop&w=600&q=80',
   },
   {
     quote:
       'As a retailer partner, the onboarding app cuts queues during festive rush. Customers love the instant approvals.',
     author: 'Meghna V., Mumbai',
     tag: 'Partner-first support',
+    role: 'Retail partner',
+    image: 'https://images.unsplash.com/photo-1504274066651-8d31a536b11a?auto=format&fit=crop&w=600&q=80',
   },
 ];
 
@@ -261,11 +277,24 @@ function HomePage() {
           <span className="eyebrow">Why choose E-Fin?</span>
           <p>Handle every upgrade like a pro with instant approvals and flexible repayments.</p>
         </header>
+        <div className="why-metrics">
+          {WHY_METRICS.map((metric) => (
+            <div key={metric.label}>
+              <strong>{metric.value}</strong>
+              <span>{metric.label}</span>
+            </div>
+          ))}
+        </div>
         <div className="why-grid">
           {WHY_POINTS.map((point) => (
-            <article key={point.title}>
-              <h3>{point.title}</h3>
-              <p>{point.copy}</p>
+            <article key={point.title} className="why-card">
+              <div className="why-icon" aria-hidden="true">
+                {point.icon}
+              </div>
+              <div>
+                <h3>{point.title}</h3>
+                <p>{point.copy}</p>
+              </div>
             </article>
           ))}
         </div>
@@ -274,15 +303,27 @@ function HomePage() {
       <section className="section-block testimonials-block" id="stories">
         <header className="section-heading">
           <span className="eyebrow">Here&apos;s what our customers think of us!</span>
+          <h2>Real stories from borrowers and partners</h2>
+          <p>Speed, transparency, and human support are our north stars. Here’s how that feels in real life.</p>
         </header>
-        <div className="testimonial-grid">
-          {TESTIMONIALS.map((testimonial) => (
-            <blockquote key={testimonial.author}>
-              <span className="quote-tag">{testimonial.tag}</span>
-              <p>{testimonial.quote}</p>
-              <cite>{testimonial.author}</cite>
-            </blockquote>
-          ))}
+        <div className="testimonial-marquee">
+          <div className="testimonial-track">
+            {[...TESTIMONIALS, ...TESTIMONIALS].map((testimonial, index) => (
+              <article key={`${testimonial.author}-${index}`} className="testimonial-item">
+                <div className="testimonial-avatar round">
+                  <img src={testimonial.image} alt={testimonial.author} loading="lazy" />
+                </div>
+                <div className="testimonial-text">
+                  <span className="quote-tag">{testimonial.tag}</span>
+                  <p>“{testimonial.quote}”</p>
+                  <div className="testimonial-meta">
+                    <strong>{testimonial.author}</strong>
+                    <span>{testimonial.role}</span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -20,13 +20,16 @@ function InfoPage({ page }) {
     faqs = [],
     assurance = [],
     helperNote,
+    quickActions = [],
+    speedFacts = [],
+    theme,
   } = page;
 
   const displayHighlights = highlights.length > 0 ? highlights : bullets.map((text) => ({ title: text }));
 
   return (
     <div className="page info-page">
-      <section className="info-hero">
+      <section className={`info-hero ${theme ? `theme-${theme}` : ''}`}>
         <div className="info-copy info-hero-card">
           {(heroBadge || category) && <span className="info-pill">{heroBadge || category}</span>}
           <h1>{title}</h1>
@@ -47,6 +50,16 @@ function InfoPage({ page }) {
             <div className="info-highlight-chips">
               {displayHighlights.slice(0, 4).map((item) => (
                 <span key={item.title || item}>{item.title || item}</span>
+              ))}
+            </div>
+          )}
+          {speedFacts.length > 0 && (
+            <div className="info-speed-row">
+              {speedFacts.map((fact) => (
+                <div key={fact.label}>
+                  <strong>{fact.value}</strong>
+                  <span>{fact.label}</span>
+                </div>
               ))}
             </div>
           )}
@@ -78,6 +91,25 @@ function InfoPage({ page }) {
               <span>{stat.label}</span>
             </div>
           ))}
+        </section>
+      )}
+      {quickActions.length > 0 && (
+        <section className="info-section info-actions">
+          <div className="section-heading">
+            <p className="eyebrow">Do more in a minute</p>
+            <h2>One-tap actions built into instant cash</h2>
+          </div>
+          <div className="info-actions-grid">
+            {quickActions.map((action) => (
+              <article key={action.title} className="info-action-card">
+                {action.icon && <span className="info-action-icon">{action.icon}</span>}
+                <div>
+                  <h3>{action.title}</h3>
+                  <p>{action.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </section>
       )}
       {displayHighlights.length > 0 && (
