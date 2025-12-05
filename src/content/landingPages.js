@@ -14,10 +14,10 @@ const sharedCtas = {
 
 const LANDING_PAGES = {
   'loans/instant-cash-loan': {
-    title: 'Instant Cash Loan',
+    title: 'Small Business Loan',
     category: 'Loans',
     theme: 'cash',
-    excerpt: 'Get quick cash loans of up to ₹5 lacs in 2 minutes',
+    excerpt: 'Unsecured business loan up to ₹5 lakhs without collateral',
     description:
       'Apply 24x7, finish digital KYC, and have cash transferred directly to your bank account without paperwork.',
     heroBadge: 'Cash in 2 minutes',

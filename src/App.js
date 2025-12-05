@@ -13,6 +13,7 @@ import SupportPage from './pages/SupportPage';
 import ApplyPage from './pages/ApplyPage';
 import LoginPage from './pages/LoginPage';
 import InfoPage from './pages/InfoPage';
+import SmallBusinessLoanPage from './pages/SmallBusinessLoanPage';
 import landingPages from './content/landingPages';
 import PersonalLoanCalculatorPage from './pages/calculators/PersonalLoanCalculatorPage';
 import TwoThreeWheelerCalculatorPage from './pages/calculators/TwoThreeWheelerCalculatorPage';
@@ -49,6 +50,7 @@ function App() {
           <Route path="resources/eligibility-calculator" element={<EligibilityCalculatorPage />} />
           <Route path="resources/check-credit-score" element={<CreditScorePage />} />
           <Route path="loans/personal-loan" element={<PersonalLoansPage />} />
+          <Route path="loans/instant-cash-loan" element={<SmallBusinessLoanPage />} />
           {Object.entries(landingPages).map(([path, page]) => {
             if (
               page.template === 'calculator' ||
