@@ -451,4 +451,5 @@ export const NAV_STRUCTURE = [
   { label: 'About Us', items: ['about', 'about/careers', 'support/contact'] },
 ];
 
+
 export default LANDING_PAGES;

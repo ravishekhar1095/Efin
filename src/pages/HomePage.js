@@ -44,29 +44,6 @@ const PRODUCT_CARDS = [
   },
 ];
 
-const WHY_CHOOSE_US = [
-  {
-    icon: '⚡',
-    title: 'Lightning Fast',
-    description: 'Get approved in minutes and money in your account instantly',
-  },
-  {
-    icon: '🔒',
-    title: 'Secure & Safe',
-    description: 'Bank-grade encryption and RBI-registered NBFC',
-  },
-  {
-    icon: '💰',
-    title: 'Transparent Pricing',
-    description: 'No hidden charges, clear terms, and competitive interest rates',
-  },
-  {
-    icon: '📱',
-    title: 'Easy Process',
-    description: 'Simple online application with minimal documentation',
-  },
-];
-
 const TESTIMONIALS = [
   {
     quote:
@@ -151,25 +128,6 @@ function HomePage() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us */}
-      <section className="section-block why-choose-section">
-        <header className="section-heading">
-          <span className="eyebrow">Why Choose E-Fin</span>
-          <h2>Built for speed, security, and simplicity</h2>
-        </header>
-        <div className="why-choose-grid">
-          {WHY_CHOOSE_US.map((item) => (
-            <div key={item.title} className="why-card">
-              <div className="why-icon">{item.icon}</div>
-              <div>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 

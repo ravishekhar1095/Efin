@@ -64,7 +64,7 @@ function Header() {
     }
   };
 
-  const logoSrc = `${process.env.PUBLIC_URL || ''}/logo.png`;
+  const logoSrc = `${process.env.PUBLIC_URL || ''}/Png-01.png`;
 
   return (
     <header className="fibe-header" ref={headerRef}>

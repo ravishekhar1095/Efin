@@ -16,7 +16,7 @@
   right: -20%;
   width: 800px;
   height: 800px;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(247, 189, 32, 0.15) 0%, transparent 70%);
   border-radius: 50%;
   animation: float 20s ease-in-out infinite;
 }
@@ -57,7 +57,7 @@
   overflow: hidden;
   position: relative;
   z-index: 1;
-  border: 1px solid rgba(255, 215, 0, 0.2);
+  border: 1px solid rgba(247, 189, 32, 0.2);
 }
 
 /* Left Section - Form */
@@ -122,7 +122,7 @@
   display: flex;
   align-items: center;
   background: var(--surface-soft);
-  border: 2px solid rgba(255, 215, 0, 0.2);
+  border: 2px solid rgba(247, 189, 32, 0.2);
   border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s ease;
@@ -130,15 +130,15 @@
 
 .input-wrapper:focus-within {
   border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.1);
+  box-shadow: 0 0 0 4px rgba(247, 189, 32, 0.1);
 }
 
 .input-prefix {
   padding: 0 1rem;
   font-weight: 600;
   color: var(--text-muted);
-  border-right: 2px solid rgba(255, 215, 0, 0.1);
-  background: rgba(255, 215, 0, 0.05);
+  border-right: 2px solid rgba(247, 189, 32, 0.1);
+  background: rgba(247, 189, 32, 0.05);
 }
 
 .input-wrapper input {
@@ -170,7 +170,7 @@
   text-align: center;
   font-size: 1.5rem;
   font-weight: 700;
-  border: 2px solid rgba(255, 215, 0, 0.2);
+  border: 2px solid rgba(247, 189, 32, 0.2);
   border-radius: 12px;
   background: var(--surface-soft);
   outline: none;
@@ -180,7 +180,7 @@
 
 .otp-inputs input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.1);
+  box-shadow: 0 0 0 4px rgba(247, 189, 32, 0.1);
   background: #fff;
 }
 
@@ -253,7 +253,7 @@
 
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 25px 60px rgba(255, 215, 0, 0.4);
+  box-shadow: 0 25px 60px rgba(247, 189, 32, 0.4);
 }
 
 .submit-btn:disabled {
@@ -278,7 +278,7 @@
 
 .change-number-btn {
   background: transparent;
-  border: 2px solid rgba(255, 215, 0, 0.3);
+  border: 2px solid rgba(247, 189, 32, 0.3);
   color: var(--primary);
   border-radius: 16px;
   padding: 0.9rem 2rem;
@@ -289,7 +289,7 @@
 }
 
 .change-number-btn:hover {
-  background: rgba(255, 215, 0, 0.08);
+  background: rgba(247, 189, 32, 0.08);
   border-color: var(--primary);
 }
 
@@ -307,7 +307,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(247, 189, 32, 0.2), transparent);
 }
 
 .divider span {
@@ -343,8 +343,8 @@
 }
 
 .social-btn:hover {
-  border-color: rgba(255, 215, 0, 0.3);
-  background: rgba(255, 215, 0, 0.05);
+  border-color: rgba(247, 189, 32, 0.3);
+  background: rgba(247, 189, 32, 0.05);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
@@ -390,7 +390,7 @@
   right: -30%;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(247, 189, 32, 0.2) 0%, transparent 70%);
   border-radius: 50%;
 }
 

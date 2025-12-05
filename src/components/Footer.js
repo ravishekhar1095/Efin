@@ -70,7 +70,7 @@ const footerSocial = [
 
 function Footer() {
   const currentYear = new Date().getFullYear();
-  const logoSrc = `${process.env.PUBLIC_URL || ''}/logo.png`;
+  const logoSrc = `${process.env.PUBLIC_URL || ''}/Png-01.png`;
 
   return (
     <footer className="site-footer">

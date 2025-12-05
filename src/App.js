@@ -7,7 +7,7 @@ import SolutionsPage from './pages/SolutionsPage';
 import PersonalLoansPage from './pages/PersonalLoansPage';
 import BnplPage from './pages/BnplPage';
 import TwoWheelerPage from './pages/TwoWheelerPage';
-import WhyFinanceCoPage from './pages/WhyFinanceCoPage';
+import AboutPage from './pages/AboutPage';
 import HowItWorksPage from './pages/HowItWorksPage';
 import SupportPage from './pages/SupportPage';
 import ApplyPage from './pages/ApplyPage';
@@ -36,8 +36,8 @@ function App() {
           <Route path="solutions/personal-loans" element={<PersonalLoansPage />} />
           <Route path="solutions/buy-now-pay-later" element={<BnplPage />} />
           <Route path="solutions/two-wheeler-finance" element={<TwoWheelerPage />} />
-          <Route path="why-fibe" element={<WhyFinanceCoPage />} />
-          <Route path="about" element={<WhyFinanceCoPage />} />
+          <Route path="why-fibe" element={<AboutPage />} />
+          <Route path="about" element={<AboutPage />} />
           <Route path="about/careers" element={<CareersPage />} />
           <Route path="how-it-works" element={<HowItWorksPage />} />
           <Route path="support" element={<SupportPage />} />

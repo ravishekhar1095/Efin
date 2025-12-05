@@ -1,7 +1,9 @@
 body {
   margin: 0;
   font-family: 'Poppins', 'Inter', 'Segoe UI', Roboto, sans-serif;
-  background: #fffdf5;
+  background: linear-gradient(to bottom, #FFF9E6, #D4A017);
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
 code {

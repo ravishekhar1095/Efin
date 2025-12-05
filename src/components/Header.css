@@ -7,14 +7,14 @@
   z-index: 1000;
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+  border-bottom: 1px solid rgba(247, 189, 32, 0.15);
   transition: all 0.3s ease;
 }
 
 .fibe-header.has-shadow {
   background: rgba(255, 255, 255, 1);
-  box-shadow: 0 4px 30px rgba(255, 215, 0, 0.1), 0 2px 10px rgba(0, 0, 0, 0.05);
-  border-bottom-color: rgba(255, 215, 0, 0.25);
+  box-shadow: 0 4px 30px rgba(247, 189, 32, 0.1), 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-bottom-color: rgba(247, 189, 32, 0.25);
 }
 
 .header-shell {
@@ -43,9 +43,13 @@
 
 .brand-logo,
 .brand-mark img {
-  height: 65px;
+  height: 140px;
   width: auto;
+  max-width: 280px;
   object-fit: contain;
+  transition: transform 0.3s ease;
+  transform: scale(1.15);
+  transform-origin: left center;
 }
 
 /* Mobile Toggle */
@@ -134,13 +138,13 @@
   transform: translateX(-50%);
   width: 0;
   height: 2px;
-  background: linear-gradient(135deg, #ffd700, #ffc107);
+  background: linear-gradient(135deg, #f7bd20, #e8a91a);
   transition: width 0.3s ease;
 }
 
 .nav-link:hover {
-  color: var(--primary-dark, #ffc107);
-  background: rgba(255, 215, 0, 0.08);
+  color: var(--primary-dark, #e8a91a);
+  background: rgba(247, 189, 32, 0.08);
 }
 
 .nav-link:hover::after {
@@ -179,7 +183,7 @@
   transform: translateY(-10px);
   transition: all 0.3s ease;
   min-width: 480px;
-  border: 1px solid rgba(255, 215, 0, 0.2);
+  border: 1px solid rgba(247, 189, 32, 0.2);
   z-index: 100;
 }
 
@@ -205,9 +209,9 @@
 }
 
 .mega-card:hover {
-  border-color: rgba(255, 215, 0, 0.4);
+  border-color: rgba(247, 189, 32, 0.4);
   transform: translateY(-2px);
-  background: rgba(255, 215, 0, 0.05);
+  background: rgba(247, 189, 32, 0.05);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
@@ -227,7 +231,7 @@
 
 .mega-card>span {
   font-size: 1.25rem;
-  color: var(--primary-dark, #ffc107);
+  color: var(--primary-dark, #e8a91a);
 }
 
 /* Action Buttons */
@@ -258,25 +262,25 @@
 .ghost-btn {
   color: var(--secondary, #111);
   background: transparent;
-  border: 2px solid rgba(255, 215, 0, 0.3);
+  border: 2px solid rgba(247, 189, 32, 0.3);
 }
 
 .ghost-btn:hover {
-  background: rgba(255, 215, 0, 0.1);
-  border-color: var(--primary, #ffd700);
+  background: rgba(247, 189, 32, 0.1);
+  border-color: var(--primary, #f7bd20);
   transform: translateY(-2px);
 }
 
 .primary-btn {
-  background: linear-gradient(135deg, #ffd700, #ffc107);
+  background: linear-gradient(135deg, #f7bd20, #e8a91a);
   color: var(--secondary, #111);
   border: 2px solid transparent;
-  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(247, 189, 32, 0.3);
 }
 
 .primary-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+  box-shadow: 0 8px 25px rgba(247, 189, 32, 0.4);
 }
 
 /* Overlay */
@@ -363,7 +367,7 @@
   }
 
   .nav-link:hover {
-    background: rgba(255, 215, 0, 0.12);
+    background: rgba(247, 189, 32, 0.12);
   }
 
   /* Mobile Dropdown Styles */
@@ -373,7 +377,7 @@
     visibility: visible;
     transform: none;
     box-shadow: none;
-    background: rgba(255, 215, 0, 0.05);
+    background: rgba(247, 189, 32, 0.05);
     border-radius: 12px;
     margin-top: 0.5rem;
     grid-template-columns: 1fr;
@@ -416,7 +420,9 @@
 
   .brand-logo,
   .brand-mark img {
-    height: 42px;
+    height: 85px;
+    max-width: 180px;
+    transform: scale(1.1);
   }
 
   .nav-toggle {
