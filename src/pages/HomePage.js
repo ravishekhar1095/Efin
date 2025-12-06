@@ -51,7 +51,7 @@ const TESTIMONIALS = [
     author: 'Subham Pawar',
     tag: 'Instant loan in minutes',
     role: 'Medical emergency borrower',
-    image: 'https://images.unsplash.com/photo-1582719478248-70e57188f5b5?auto=format&fit=crop&w=600&q=80',
+    image: '/testimonial-subham.png',
   },
   {
     quote:
@@ -59,7 +59,7 @@ const TESTIMONIALS = [
     author: 'Sahitya Goswami',
     tag: 'Quick and easy',
     role: 'Personal loan customer',
-    image: 'https://images.unsplash.com/photo-1483478550801-ceba5fe50e8e?auto=format&fit=crop&w=600&q=80',
+    image: '/testimonial-sahitya.png',
   },
   {
     quote:
@@ -67,7 +67,7 @@ const TESTIMONIALS = [
     author: 'Meghna V., Mumbai',
     tag: 'Partner-first support',
     role: 'Retail partner',
-    image: 'https://images.unsplash.com/photo-1504274066651-8d31a536b11a?auto=format&fit=crop&w=600&q=80',
+    image: '/testimonial-meghna.png',
   },
 ];
 

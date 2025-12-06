@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const STATS = [
     { value: '30+', label: 'Years of Trust' },
-    { value: '400+', label: 'Lives Empowered' },
+    { value: '400k+', label: 'Lives Empowered' },
     { value: '₹100 Cr+', label: 'Loans Disbursed' },
     { value: '40+', label: 'Cities Served' },
 ];
