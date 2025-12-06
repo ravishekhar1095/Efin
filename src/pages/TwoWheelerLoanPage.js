@@ -104,11 +104,6 @@ function TwoWheelerLoanPage() {
                         <p>Additional financing for riding gear, accessories, and safety equipment</p>
                     </div>
                     <div className="tw-benefit-card">
-                        <div className="tw-benefit-icon">🏠</div>
-                        <h3>Doorstep Service</h3>
-                        <p>Documentation and verification support at your doorstep</p>
-                    </div>
-                    <div className="tw-benefit-card">
                         <div className="tw-benefit-icon">🔋</div>
                         <h3>EV Friendly</h3>
                         <p>Special rates and schemes for electric two-wheelers</p>

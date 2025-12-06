@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 
 const STATS = [
     { value: '30+', label: 'Years of Trust' },
-    { value: '2.4M+', label: 'Lives Empowered' },
-    { value: '₹33,000 Cr+', label: 'Loans Disbursed' },
-    { value: '220+', label: 'Cities Served' },
+    { value: '400+', label: 'Lives Empowered' },
+    { value: '₹100 Cr+', label: 'Loans Disbursed' },
+    { value: '40+', label: 'Cities Served' },
 ];
 
 const VALUES = [
@@ -55,22 +55,22 @@ const JOURNEY = [
 
 const TEAM = [
     {
-        initial: 'N',
-        name: 'Nupur Malhotra',
+        initial: 'R',
+        name: 'Rahul Sharma',
         role: 'CEO & Director',
         focus: 'Strategic Growth & Governance',
     },
     {
-        initial: 'A',
-        name: 'Anish Sharma',
-        role: 'Chief Risk Officer',
-        focus: 'Risk Management & Compliance',
+        initial: 'S',
+        name: 'Suraj Garg',
+        role: 'Chief Financial Officer',
+        focus: 'Financial Management & Compliance',
     },
     {
-        initial: 'R',
-        name: 'Ria Deshpande',
-        role: 'Head of Partnerships',
-        focus: 'Strategic Alliances & Growth',
+        initial: 'P',
+        name: 'Praveen Sharma',
+        role: 'Promoter',
+        focus: 'Growth',
     },
 ];
 
@@ -286,7 +286,7 @@ function AboutPage() {
                         <span className="contact-icon">💬</span>
                         <div>
                             <span className="contact-label">WhatsApp</span>
-                            <a href="https://wa.me/918433997290" className="contact-value">+91-84339 97290</a>
+                            <a href="https://wa.me/919997842548" className="contact-value">+91-9997842548</a>
                         </div>
                     </div>
                 </div>
@@ -296,7 +296,7 @@ function AboutPage() {
             <section className="cta-section about-cta">
                 <div className="cta-content">
                     <h2>Ready to Experience Transparent Lending?</h2>
-                    <p>Join 2.4 million+ Indians who trust E-Fin for their financial needs</p>
+                    <p>Join 400+ Indians who trust E-Fin for their financial needs</p>
                     <div className="cta-buttons">
                         <Link className="primary-btn large" to="/support/apply">
                             Apply for Loan →

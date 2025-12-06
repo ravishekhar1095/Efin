@@ -101,6 +101,78 @@ const LANDING_PAGES = {
     ctaPrimary: sharedCtas.apply,
     ctaSecondary: sharedCtas.download,
   },
+  'loans/loan-against-property': {
+    title: 'Loan Against Property',
+    category: 'Loans',
+    theme: 'property',
+    excerpt: 'High-value loans against residential or commercial property',
+    description:
+      'Unlock the value of your property with flexible repayment options and competitive interest rates. No need to sell your asset.',
+    heroBadge: 'Up to ₹10 Cr',
+    speedFacts: [
+      { label: 'Loan Amount', value: 'Up to ₹10 Cr' },
+      { label: 'Interest Rate', value: 'Starting 8.5% p.a.' },
+      { label: 'Tenure', value: 'Up to 20 years' },
+    ],
+    highlights: [
+      {
+        title: 'Maximum loan value',
+        description: 'Get up to 70% of your property value with minimal documentation and quick processing.',
+      },
+      {
+        title: 'Flexible repayment tenure',
+        description: 'Choose tenure from 5 to 20 years with EMIs that suit your cash flow requirements.',
+      },
+      {
+        title: 'Multiple property types',
+        description: 'Residential, commercial, or industrial properties are all eligible for financing.',
+      },
+    ],
+    steps: [
+      { title: 'Property evaluation', description: 'Share property documents for our team to assess market value and eligibility.' },
+      { title: 'Complete documentation', description: 'Submit KYC, property papers, and income proof for verification.' },
+      { title: 'Legal verification', description: 'Our legal team conducts title search and property verification.' },
+      { title: 'Loan sanction & disbursal', description: 'Accept the offer and receive funds directly to your bank account.' },
+    ],
+    assurance: [
+      { title: 'Competitive interest rates', description: 'Starting from 8.5% p.a. with no hidden charges or fees.' },
+      { title: 'Zero pre-payment penalty', description: 'Close your loan early without any additional charges.' },
+      { title: 'Doorstep service', description: 'Document pickup and property verification done at your convenience.' },
+    ],
+    faqs: [
+      {
+        q: 'What types of properties are eligible?',
+        a: 'Residential apartments, independent houses, commercial shops, offices, and industrial properties are all eligible.',
+      },
+      {
+        q: 'How much can I borrow against my property?',
+        a: 'You can borrow up to 70% of the current market value of your property, subject to credit assessment.',
+      },
+      {
+        q: 'What is the processing time?',
+        a: 'After document submission, the entire process including legal verification takes 7-10 working days.',
+      },
+      {
+        q: 'Can I prepay my loan?',
+        a: 'Yes, you can prepay your loan partially or fully at any time without any pre-payment penalty.',
+      },
+    ],
+    helperNote: 'Leverage your property without selling it. Keep ownership while accessing funds.',
+    quickActions: [
+      { title: 'Property valuation', description: 'Get instant property valuation online before applying.', icon: '🏘️' },
+      { title: 'Flexible purpose', description: 'Use funds for business expansion, education, medical needs, or any purpose.', icon: '💼' },
+      { title: 'Balance transfer', description: 'Transfer your existing loan from other banks at better rates.', icon: '🔄' },
+    ],
+    bullets: ['Up to ₹10 Cr loan amount', 'Tenure up to 20 years', 'Interest rates from 8.5% p.a.', 'Zero pre-payment charges'],
+    stats: [
+      { label: 'Max loan amount', value: '₹10 Cr' },
+      { label: 'Interest rate', value: 'From 8.5% p.a.' },
+      { label: 'Max tenure', value: '20 years' },
+    ],
+    image: emiStoreIcon,
+    ctaPrimary: sharedCtas.apply,
+    ctaSecondary: sharedCtas.eligibility,
+  },
   'loans/two-wheeler-loan': {
     title: 'Two-Wheeler Loan',
     category: 'Loans',
@@ -186,22 +258,6 @@ const LANDING_PAGES = {
       { label: 'Security', value: 'Numberless design' },
     ],
     image: creditCardIcon,
-    ctaPrimary: sharedCtas.apply,
-    ctaSecondary: sharedCtas.download,
-  },
-  'offerings/bnpl': {
-    title: 'E-Fin EMIs - Buy Now Pay Later',
-    category: 'Our Offerings',
-    excerpt: 'Split big and small upgrades into easy EMIs',
-    description:
-      'Checkout anywhere with the E-Fin EMI network and enjoy no-cost or low-cost options across 8,000+ partners.',
-    bullets: ['Instant approvals at POS', 'Both online & offline partners', 'Flexible tenure slabs'],
-    stats: [
-      { label: 'Partner stores', value: '8,000+' },
-      { label: 'Ticket size', value: '₹1K – ₹3L' },
-      { label: 'Processing fee', value: 'As low as 0%' },
-    ],
-    image: emiStoreIcon,
     ctaPrimary: sharedCtas.apply,
     ctaSecondary: sharedCtas.download,
   },
@@ -321,56 +377,6 @@ const LANDING_PAGES = {
     ctaSecondary: sharedCtas.download,
     template: 'calculator',
   },
-  'learn/blogs': {
-    title: 'E-Fin Blogs',
-    category: 'Learn',
-    excerpt: 'Read about finance, credit health, and smart tips',
-    description:
-      'Deep dives into personal finance, lifestyle upgrades, and customer stories curated by Team E-Fin.',
-    bullets: ['New stories every week', 'Expert-written guides', 'Explainers & checklists'],
-    stats: [
-      { label: 'Articles', value: '500+' },
-      { label: 'Categories', value: '12' },
-      { label: 'Average read', value: '4 mins' },
-    ],
-    image: instantCashIcon,
-    ctaPrimary: { label: 'Visit blog', to: '/#blog' },
-    ctaSecondary: sharedCtas.download,
-    template: 'blogs',
-  },
-  'learn/dictionary': {
-    title: 'Financial Dictionary',
-    category: 'Learn',
-    excerpt: 'Look up formulas, concepts, and money terms',
-    description:
-      'Browse A-Z dfibeitions, formulas, and ratios so you always know the jargon before you sign.',
-    bullets: ['900+ terms', 'Searchable index', 'Examples & use-cases'],
-    stats: [
-      { label: 'Latest update', value: 'Oct 2025' },
-      { label: 'Formats', value: 'Text & video' },
-      { label: 'Access', value: 'Free' },
-    ],
-    image: financialWellnessIcon,
-    ctaPrimary: { label: 'Explore terms', to: '/#blog' },
-    ctaSecondary: sharedCtas.download,
-  },
-  'learn/quiz': {
-    title: 'Finance Quiz',
-    category: 'Learn',
-    excerpt: 'Master money the fun way with bite-sized quizzes',
-    description:
-      'Play themed quizzes, earn badges, and challenge your friends on all things credit and budgeting.',
-    bullets: ['Weekly leaderboards', 'Gamified levels', 'Shareable trophies'],
-    stats: [
-      { label: 'Players', value: '2L+' },
-      { label: 'Categories', value: '8' },
-      { label: 'Avg session', value: '6 mins' },
-    ],
-    image: creditScoreIcon,
-    ctaPrimary: { label: 'Start quiz', to: '/learn/quiz' },
-    ctaSecondary: sharedCtas.download,
-    template: 'quiz',
-  },
   about: {
     title: 'About E-Fin',
     category: 'Company',
@@ -435,6 +441,7 @@ export const NAV_STRUCTURE = [
     items: [
       'loans/instant-cash-loan',
       'loans/personal-loan',
+      'loans/loan-against-property',
       'loans/two-wheeler-loan',
       'loans/three-wheeler-loan',
     ],

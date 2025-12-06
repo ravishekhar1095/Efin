@@ -5,7 +5,7 @@ import ScrollToTop from './components/ScrollToTop';
 import HomePage from './pages/HomePage';
 import SolutionsPage from './pages/SolutionsPage';
 import PersonalLoansPage from './pages/PersonalLoansPage';
-import BnplPage from './pages/BnplPage';
+
 import TwoWheelerPage from './pages/TwoWheelerPage';
 import AboutPage from './pages/AboutPage';
 import HowItWorksPage from './pages/HowItWorksPage';
@@ -22,8 +22,7 @@ import TwoThreeWheelerCalculatorPage from './pages/calculators/TwoThreeWheelerCa
 import EligibilityCalculatorPage from './pages/calculators/EligibilityCalculatorPage';
 import CreditScorePage from './pages/calculators/CreditScorePage';
 import CareersPage from './pages/CareersPage';
-import BlogsPage from './pages/BlogsPage';
-import QuizPage from './pages/QuizPage';
+
 
 function App() {
   return (
@@ -34,7 +33,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="solutions" element={<SolutionsPage />} />
           <Route path="solutions/personal-loans" element={<PersonalLoansPage />} />
-          <Route path="solutions/buy-now-pay-later" element={<BnplPage />} />
+
           <Route path="solutions/two-wheeler-finance" element={<TwoWheelerPage />} />
           <Route path="why-fibe" element={<AboutPage />} />
           <Route path="about" element={<AboutPage />} />
@@ -62,12 +61,6 @@ function App() {
               path === 'about/careers'
             ) {
               return null;
-            }
-            if (page.template === 'blogs') {
-              return <Route key={path} path={path} element={<BlogsPage />} />;
-            }
-            if (page.template === 'quiz') {
-              return <Route key={path} path={path} element={<QuizPage />} />;
             }
             return <Route key={path} path={path} element={<InfoPage page={page} />} />;
           })}

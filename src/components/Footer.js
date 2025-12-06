@@ -4,12 +4,11 @@ const footerNav = [
   {
     title: 'Loans',
     links: [
-      { path: '/loans/instant-cash-loan', label: 'Instant Cash Loan' },
+      { path: '/loans/instant-cash-loan', label: 'Small Business Loan' },
       { path: '/loans/personal-loan', label: 'Personal Loan' },
+      { path: '/loans/loan-against-property', label: 'Loan Against Property' },
       { path: '/loans/two-wheeler-loan', label: 'Two-Wheeler Loan' },
       { path: '/loans/three-wheeler-loan', label: 'Three-Wheeler Loan' },
-      { path: '/offerings/medical-loan', label: 'Medical Loan' },
-      { path: '/offerings/education-loan', label: 'Education Loan' },
     ],
   },
   {
@@ -28,14 +27,6 @@ const footerNav = [
       { path: '/about/careers', label: 'Careers' },
       { path: '/support/contact', label: 'Contact Us' },
       { path: '/support', label: 'Support' },
-    ],
-  },
-  {
-    title: 'Learn',
-    links: [
-      { path: '/learn/blogs', label: 'Blogs' },
-      { path: '/learn/dictionary', label: 'Financial Dictionary' },
-      { path: '/learn/quiz', label: 'Finance Quiz' },
     ],
   },
 ];

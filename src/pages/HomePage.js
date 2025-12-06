@@ -15,8 +15,8 @@ const HERO_STATS = [
 
 const PRODUCT_CARDS = [
   {
-    title: 'Instant Cash Loan',
-    description: 'Get cash in your bank account within minutes.',
+    title: 'Small Business Loan',
+    description: 'Unsecured business loan up to ₹5 lakhs without collateral.',
     to: '/loans/instant-cash-loan',
     icon: instantCashIcon,
     amount: 'Up to ₹5 Lakhs',
@@ -36,11 +36,11 @@ const PRODUCT_CARDS = [
     amount: 'Flexible EMIs',
   },
   {
-    title: 'EMI Store',
-    description: 'Upgrade gadgets, travel, and more in easy EMIs.',
-    to: '/offerings/bnpl',
+    title: 'Loan Against Property',
+    description: 'Get high-value loans by leveraging your residential or commercial property.',
+    to: '/loans/loan-against-property',
     icon: emiStoreIcon,
-    amount: '0% Interest',
+    amount: 'Up to ₹10 Cr',
   },
 ];
 

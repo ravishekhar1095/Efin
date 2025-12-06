@@ -45,19 +45,6 @@ const solutionData = [
     ctaLabel: 'View personal loans',
   },
   {
-    id: 'bnpl',
-    title: 'E-Fin EMIs / BNPL',
-    summary:
-      'Embedded credit at online and offline checkouts to convert purchases into zero-cost or low-cost EMIs instantly.',
-    audience: ['salaried', 'students'],
-    link: '/solutions/buy-now-pay-later',
-    highlights: ['Decisioning < 5 seconds', 'POS + app journeys', 'Unified dashboards for partners'],
-    range: '₹5K – ₹3L',
-    tenure: 'Tenure 3 – 24 months',
-    rate: 'Processing fee from 0%',
-    ctaLabel: 'Explore BNPL',
-  },
-  {
     id: 'two-wheeler',
     title: 'Two-Wheeler Finance',
     summary:
