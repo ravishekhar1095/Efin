@@ -102,6 +102,10 @@ function Footer() {
               C-74, Sector 63<br />
               Noida, Uttar Pradesh 201301, India
             </p>
+            <p className="footer-address-secondary">
+              302, Pratap Chambers, Karol Bagh<br />
+              New Delhi - 110005
+            </p>
             <div className="footer-contact">
               <span>+91-9997842548</span>
               <span>Care@efin.co.in</span>
