@@ -91,7 +91,7 @@ function HomePage() {
       <section className="hero-block" id="hero">
         <div className="hero-grid">
           <div className="hero-content">
-            <span className="eyebrow">🏆 India's largest lending platform</span>
+            <span className="eyebrow"></span>
             <h1>
               <span className="highlight-text">India's fastest growing lending platform.</span>
               We serve the community when you borrow from us.
