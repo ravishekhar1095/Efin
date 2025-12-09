@@ -90,9 +90,6 @@ Permissions: ALL (22 permissions)
 
 ### Administrator
 ```
-Email:    admin@efin.co.in
-Password: Admin@2025
-Permissions: 11 permissions
 ```
 
 **Capabilities:**
