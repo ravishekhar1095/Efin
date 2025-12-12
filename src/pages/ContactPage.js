@@ -86,7 +86,7 @@ function ContactPage() {
                                 <div className="office-card">
                                     <div className="office-icon">📍</div>
                                     <div>
-                                        <strong>Noida Office</strong>
+                                        <strong>Corporate Office</strong>
                                         <p>
                                             C-74, Sector 63<br />
                                             Noida, Uttar Pradesh 201301
@@ -97,7 +97,7 @@ function ContactPage() {
                                 <div className="office-card">
                                     <div className="office-icon">📍</div>
                                     <div>
-                                        <strong>Delhi Office</strong>
+                                        <strong>Registerd Office</strong>
                                         <p>
                                             302, Pratap Chambers, Karol Bagh<br />
                                             New Delhi - 110005
