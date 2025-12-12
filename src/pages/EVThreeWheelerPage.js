@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import './EVThreeWheelerPage.css';
-import evThreeWheeler from '../assets/ev-three-wheeler.png';
+import evThreeWheeler from '../assets/ev-auto-purchase.png';
 
 function EVThreeWheelerPage() {
     return (

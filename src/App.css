@@ -37,18 +37,16 @@
   /* Premium Multi-Tone Gradients */
 
   /* Main Background Gradient - Visible Yellow (Light to Dark) */
-  --gradient-background: linear-gradient(90deg,
-      #FFF9E6 0%,
-      #FFE082 50%,
-      #D4A017 100%);
+  --gradient-background: linear-gradient(to right,
+      #fef3c7 0%,
+      #fde68a 50%,
+      #fbbf24 100%);
 
   /* Hero Section - Warm yellow glow */
-  --gradient-hero: linear-gradient(135deg,
-      rgba(255, 251, 234, 0.95) 0%,
-      rgba(255, 248, 225, 0.85) 25%,
-      rgba(255, 243, 214, 0.75) 50%,
-      rgba(255, 237, 196, 0.65) 75%,
-      rgba(255, 232, 161, 0.5) 100%);
+  --gradient-hero: linear-gradient(to right,
+      rgba(254, 243, 199, 0.3) 0%,
+      rgba(253, 230, 138, 0.3) 50%,
+      rgba(251, 191, 36, 0.3) 100%);
 
   /* Primary Gradient - Warm orange to peachy coral */
   --gradient-primary: linear-gradient(135deg,
@@ -95,10 +93,10 @@
       #e8a91a 100%);
 
   /* Subtle card background */
-  --gradient-card: linear-gradient(145deg,
-      #ffffff 0%,
-      rgba(255, 248, 230, 0.3) 50%,
-      #ffffff 100%);
+  --gradient-card: linear-gradient(to right,
+      #FFF9E6 0%,
+      #FFE082 35%,
+      #D4A017 100%);
 
   /* Premium overlay for sections */
   --gradient-overlay: linear-gradient(180deg,
@@ -109,7 +107,6 @@
   /* Typography - Poppins as primary font (matching Unity Bank) */
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   color: var(--text-strong);
-  background-color: #fff;
 }
 
 *,
@@ -118,14 +115,24 @@
   box-sizing: border-box;
 }
 
+html {
+  background: linear-gradient(to right, #FFF9E6 0%, #FFE082 35%, #D4A017 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
 body {
   margin: 0;
   font-family: inherit;
   color: var(--text-strong);
-  background: var(--gradient-background);
+  background: linear-gradient(to right, #FFF9E6 0%, #FFE082 35%, #D4A017 100%);
   background-attachment: fixed;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Performance optimizations */
+  text-rendering: optimizeSpeed;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body.nav-open {
@@ -140,7 +147,7 @@ a {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to right, #FFF9E6, #D4A017);
+  background: linear-gradient(to right, #FFF9E6 0%, #FFE082 35%, #D4A017 100%);
 }
 
 .main-content {
@@ -157,13 +164,47 @@ a {
 }
 
 .page {
-  width: min(1240px, 94vw);
-  margin: 0 auto;
-  padding-bottom: 4rem;
+  /* Full width background like footer */
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-bottom: 0;
+  background: linear-gradient(to right, #FFF9E6 0%, #FFE082 35%, #D4A017 100%);
+  background-attachment: fixed;
+  min-height: calc(100vh - 80px);
+}
+
+/* Center content inside pages */
+.page>section,
+.page>div:not(.hero-block):not(.admin-dashboard-layout) {
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 3vw;
+  padding-right: 3vw;
 }
 
 .fibe-home {
   padding-top: 1.5rem;
+  min-height: 100vh;
+  background: linear-gradient(to right, #FFF9E6 0%, #FFE082 35%, #D4A017 100%);
+  background-attachment: fixed;
+  /* Override .page width to extend full width like footer */
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding-bottom: 0 !important;
+  /* Remove bottom padding to eliminate gap with footer */
+}
+
+/* Container for centered content inside fibe-home */
+.fibe-home>section,
+.fibe-home>.hero-block {
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 3vw;
+  padding-right: 3vw;
 }
 
 .eyebrow {
@@ -197,7 +238,7 @@ a {
 .primary-btn:hover {
   transform: translateY(-2px);
   background: var(--gradient-button-hover);
-  box-shadow: 0 25px 60px rgba(247, 189, 32, 0.45);
+  box-shadow: 0 25px 60px rgba(246, 183, 9, 0.928);
 }
 
 .ghost-btn {
@@ -223,10 +264,10 @@ a {
   margin-top: 2rem;
   padding: 3rem;
   border-radius: 40px;
-  background: var(--gradient-hero);
   position: relative;
   overflow: hidden;
   box-shadow: 0 26px 80px rgba(15, 23, 42, 0.12);
+  background: linear-gradient(to right, #FFF9E6 0%, #FFE082 35%, #D4A017 100%);
 }
 
 .hero-grid {
@@ -260,7 +301,8 @@ a {
 }
 
 .hero-form {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
   padding: 1.5rem;
   border-radius: 24px;
   box-shadow: 0 25px 60px rgba(15, 23, 42, 0.12);
@@ -387,15 +429,16 @@ a {
 
 
 .hero-insight {
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 32px;
   padding: 1.75rem;
   box-shadow: 0 35px 65px rgba(15, 23, 42, 0.12);
   position: relative;
+  backdrop-filter: blur(10px);
 }
 
 .hero-insight.primary {
-  background: linear-gradient(135deg, #ffffff, #fff6ed);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .hero-pill {
@@ -434,7 +477,8 @@ a {
 }
 
 .hero-mini-cards div {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
   border-radius: 18px;
   border: 1px solid var(--border-soft);
   padding: 0.9rem 1.1rem;
@@ -452,7 +496,7 @@ a {
 
 .stats-bar {
   margin: 3rem 0;
-  background: linear-gradient(90deg, #fffbe8, #fff4c9, #fffbe8);
+  background: linear-gradient(to right, #FFF9E6 0%, #FFE082 35%, #D4A017 100%);
   border-radius: 24px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -750,7 +794,7 @@ a {
 }
 
 .offerings-block {
-  background: #fff;
+  background: linear-gradient(to right, #FFF9E6 0%, #FFE082 35%, #D4A017 100%);
   border-radius: 34px;
   padding: 3rem;
   border: 1px solid var(--border-soft);
@@ -802,7 +846,7 @@ a {
 .why-grid article {
   padding: 1.75rem;
   border-radius: 24px;
-  background: #fff;
+  background: linear-gradient(to right, #FFF9E6 0%, #FFE082 35%, #D4A017 100%);
   border: 1px solid var(--border-soft);
   min-height: 200px;
 }
@@ -901,7 +945,7 @@ a {
 .testimonial-item {
   min-width: 320px;
   max-width: 360px;
-  background: #fff;
+  background: linear-gradient(to right, #FFF9E6 0%, #FFE082 35%, #D4A017 100%);
   border-radius: 18px;
   border: 1px solid var(--border-soft);
   padding: 1rem;
@@ -1207,7 +1251,7 @@ blockquote cite {
 /* CTA Section */
 .cta-section {
   margin: 4rem 0 2rem;
-  background: var(--gradient-dark);
+  background: linear-gradient(to right, #FFF9E6 0%, #FFE082 35%, #D4A017 100%);
   border-radius: 40px;
   padding: 4rem 3rem;
   text-align: center;
@@ -1245,14 +1289,14 @@ blockquote cite {
 }
 
 .cta-section h2 {
-  color: #f7bd20;
+  color: #000000;
   font-size: clamp(2rem, 4vw, 3rem);
   margin: 0 0 1rem;
   font-weight: 800;
 }
 
 .cta-section p {
-  color: #f7bd20;
+  color: #000000;
   font-size: 1.2rem;
   margin: 0 0 2rem;
 }
@@ -3463,8 +3507,9 @@ blockquote cite {
 }
 
 .site-footer {
-  margin-top: 2rem;
-  background: linear-gradient(135deg, #ffffff, #fff7da);
+  margin-top: 0;
+  /* Remove gap above footer */
+  background: linear-gradient(to right, #FFF9E6 0%, #FFE082 35%, #D4A017 100%);
   color: var(--text-strong, #0b0b0b);
   padding: clamp(3rem, 8vw, 4.5rem) clamp(1.5rem, 8vw, 5rem);
   position: relative;
@@ -7166,6 +7211,8 @@ blockquote cite {
 html {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  background: #D4A017;
+  min-height: 100vh;
 }
 
 /* Optimize for print */

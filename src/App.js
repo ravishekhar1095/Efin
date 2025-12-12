@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import ScrollToTop from './components/ScrollToTop';
 import HomePage from './pages/HomePage';
-import SolutionsPage from './pages/SolutionsPage';
 import PersonalLoansPage from './pages/PersonalLoansPage';
 
 import TwoWheelerPage from './pages/TwoWheelerPage';
@@ -31,6 +30,12 @@ import GrievanceRedressalPage from './pages/GrievanceRedressalPage';
 import ContactPage from './pages/ContactPage';
 import DashboardPage from './pages/DashboardPage';
 import DashboardLayout from './components/DashboardLayout';
+import ProtectedRoute from './components/ProtectedRoute';
+import AdminLoginPage from './pages/AdminLoginPage';
+import AdminDashboardPage from './pages/AdminDashboardPage';
+import AdminDashboardLayout from './components/AdminDashboardLayout';
+import ProtectedAdminRoute from './components/ProtectedAdminRoute';
+import SuperAdminDashboardPage from './pages/SuperAdminDashboardPage';
 
 
 function App() {
@@ -41,7 +46,6 @@ function App() {
         {/* Main website routes with header and footer */}
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path="solutions" element={<SolutionsPage />} />
           <Route path="solutions/personal-loans" element={<PersonalLoansPage />} />
 
           <Route path="solutions/two-wheeler-finance" element={<TwoWheelerPage />} />
@@ -84,9 +88,22 @@ function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
 
-        {/* Dashboard routes with separate layout (no footer) */}
-        <Route element={<DashboardLayout />}>
+        {/* Dashboard routes with separate layout (no footer) - Protected */}
+        <Route element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
           <Route path="dashboard" element={<DashboardPage />} />
+        </Route>
+
+        {/* Admin Portal Routes */}
+        <Route path="admin/login" element={<AdminLoginPage />} />
+
+        {/* Admin Dashboard Routes - Protected */}
+        <Route element={<ProtectedAdminRoute><AdminDashboardLayout /></ProtectedAdminRoute>}>
+          <Route path="admin/dashboard" element={<AdminDashboardPage />} />
+        </Route>
+
+        {/* Super Admin Dashboard - Requires Super Admin Role */}
+        <Route element={<ProtectedAdminRoute requireSuperAdmin={true}><AdminDashboardLayout /></ProtectedAdminRoute>}>
+          <Route path="admin/super-dashboard" element={<SuperAdminDashboardPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

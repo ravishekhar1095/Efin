@@ -1,0 +1,588 @@
+/* Super Admin Dashboard Styles */
+
+.super-admin-dashboard-page {
+    animation: fadeIn 0.5s ease;
+}
+
+/* Super Admin Header */
+.super-admin-welcome-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    color: white;
+}
+
+.super-admin-welcome-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+}
+
+.super-admin-subtitle {
+    opacity: 0.95;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Super Quick Actions */
+.super-quick-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.super-action-btn {
+    padding: 0.75rem 1.25rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.super-action-btn.create-admin {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.super-action-btn.create-user {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.super-action-btn.settings {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.super-action-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Enhanced Stats Grid */
+.super-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.super-stat-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.25rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.super-stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+}
+
+.super-stat-card.purple::before {
+    background: linear-gradient(135deg, #9f7aea, #805ad5);
+}
+
+.super-stat-card.pink::before {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+.super-stat-card.blue::before {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+.super-stat-card.green::before {
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+}
+
+.super-stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.super-stat-card.purple .stat-icon {
+    background: linear-gradient(135deg, #9f7aea, #805ad5);
+}
+
+.super-stat-card.pink .stat-icon {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+.super-stat-card.blue .stat-icon {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+.super-stat-card.green .stat-icon {
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+}
+
+/* Tabs */
+.super-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #e2e8f0;
+    overflow-x: auto;
+}
+
+.super-tab {
+    padding: 1rem 1.5rem;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #718096;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.super-tab:hover {
+    color: #667eea;
+    background: #f7fafc;
+}
+
+.super-tab.active {
+    color: #667eea;
+    border-bottom-color: #667eea;
+    background: #f7fafc;
+}
+
+/* Tab Content */
+.super-tab-content {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Super Card */
+.super-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.super-card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.super-card-header h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin: 0;
+}
+
+.add-btn,
+.export-btn {
+    padding: 0.625rem 1.25rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.add-btn:hover,
+.export-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* Overview Grid */
+.overview-content {
+    margin-bottom: 2rem;
+}
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+.overview-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: #f7fafc;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.overview-item:hover {
+    background: #edf2f7;
+    transform: translateY(-2px);
+}
+
+.overview-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.overview-icon.blue {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+.overview-icon.orange {
+    background: linear-gradient(135deg, #fa709a, #fee140);
+}
+
+.overview-icon.green {
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+}
+
+.overview-icon.purple {
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+}
+
+.overview-item h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin: 0 0 0.25rem 0;
+}
+
+.overview-item p {
+    color: #718096;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* Table Styles */
+.super-table-container {
+    overflow-x: auto;
+}
+
+.super-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.super-table thead {
+    background: #f7fafc;
+}
+
+.super-table th {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #4a5568;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.super-table tbody tr {
+    border-bottom: 1px solid #e2e8f0;
+    transition: background 0.3s ease;
+}
+
+.super-table tbody tr:hover {
+    background: #f7fafc;
+}
+
+.super-table td {
+    padding: 1.25rem 1.5rem;
+    color: #2d3748;
+    font-size: 0.95rem;
+}
+
+.admin-name {
+    font-weight: 600;
+    color: #1a202c;
+}
+
+.admin-email {
+    color: #718096;
+}
+
+.admin-date {
+    color: #a0aec0;
+    font-size: 0.9rem;
+}
+
+.loans-count {
+    font-weight: 700;
+    color: #667eea;
+}
+
+/* Role Badge */
+.role-badge {
+    padding: 0.375rem 0.875rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+.role-badge.super-admin {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.role-badge.admin {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+}
+
+/* Status Badge */
+.status-badge {
+    padding: 0.375rem 0.875rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    display: inline-block;
+}
+
+.status-badge.status-success {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.status-badge.status-warning {
+    background: #fef5e7;
+    color: #b7791f;
+}
+
+.status-badge.status-danger {
+    background: #fed7d7;
+    color: #742a2a;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-btn.view {
+    background: #e6f7ff;
+}
+
+.action-btn.view:hover {
+    background: #bae7ff;
+}
+
+.action-btn.edit {
+    background: #f6ffed;
+}
+
+.action-btn.edit:hover {
+    background: #d9f7be;
+}
+
+.action-btn.delete {
+    background: #fff1f0;
+}
+
+.action-btn.delete:hover {
+    background: #ffccc7;
+}
+
+/* System Logs */
+.logs-container {
+    padding: 1.5rem;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.log-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    border-left: 4px solid;
+    transition: all 0.3s ease;
+}
+
+.log-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.log-item.log-success {
+    background: #f0fdf4;
+    border-left-color: #22c55e;
+}
+
+.log-item.log-warning {
+    background: #fef3c7;
+    border-left-color: #f59e0b;
+}
+
+.log-item.log-error {
+    background: #fee2e2;
+    border-left-color: #ef4444;
+}
+
+.log-item.log-info {
+    background: #dbeafe;
+    border-left-color: #3b82f6;
+}
+
+.log-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.log-content {
+    flex: 1;
+}
+
+.log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.log-header h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #1a202c;
+    font-weight: 700;
+}
+
+.log-time {
+    font-size: 0.85rem;
+    color: #718096;
+}
+
+.log-details {
+    margin: 0 0 0.5rem 0;
+    color: #4a5568;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.log-user {
+    font-size: 0.85rem;
+    color: #718096;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .super-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .super-admin-welcome-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .super-quick-actions {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .super-action-btn {
+        flex: 1;
+        min-width: calc(50% - 0.375rem);
+    }
+
+    .super-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .super-tabs {
+        gap: 0.25rem;
+    }
+
+    .super-tab {
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .overview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .super-table th,
+    .super-table td {
+        padding: 0.875rem;
+        font-size: 0.85rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .super-admin-welcome-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .super-admin-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .super-card-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .add-btn,
+    .export-btn {
+        width: 100%;
+    }
+
+    .super-table {
+        font-size: 0.8rem;
+    }
+}

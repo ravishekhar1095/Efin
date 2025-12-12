@@ -55,10 +55,29 @@ function DashboardLayout() {
 
     // Handle logout
     const handleLogout = () => {
-        // Clear any session data
-        localStorage.removeItem('userSession');
-        navigate('/login');
+        // Clear all session data
+        localStorage.clear();
+        sessionStorage.clear();
+
+        // Clear any cookies
+        document.cookie.split(";").forEach((c) => {
+            document.cookie = c
+                .replace(/^ +/, "")
+                .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+        });
+
+        // Clear browser history to prevent back button access
+        window.history.pushState(null, '', '/login');
+
+        // Disable back button after logout
+        window.onpopstate = function () {
+            window.history.pushState(null, '', '/login');
+        };
+
+        // Force page reload to clear any cached state and navigate to login
+        window.location.replace('/login');
     };
+
 
     // Track user activity
     useEffect(() => {

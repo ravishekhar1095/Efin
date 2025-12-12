@@ -4,17 +4,49 @@
 <head>
   <meta charset="utf-8" />
   <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon-optimized.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="E-Fin-inspired lending experience built with React" />
+  
+  <!-- Mobile Optimization -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  
+  <!-- Performance hints -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <meta name="theme-color" content="#D4A017" />
+  <meta name="description" content="E-Fin - India's fastest growing lending platform. Get instant personal loans, business loans, and vehicle financing with transparent pricing and instant approvals." />
+  
+  <!-- SEO and Social -->
+  <meta name="keywords" content="personal loan, business loan, vehicle loan, instant loan, quick approval, E-Fin" />
+  <meta property="og:title" content="E-Fin - Fast & Easy Lending" />
+  <meta property="og:description" content="Get instant loans with transparent pricing and quick approvals" />
+  <meta property="og:type" content="website" />
+  
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  
+  <!-- DNS Prefetch for faster font loading -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  
+  <!-- Preconnect for critical resources -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Font loading with display=swap for better performance -->
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
-    rel="stylesheet">
-  <title>E-fin</title>
+    rel="stylesheet"
+    media="print" 
+    onload="this.media='all'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet">
+  </noscript>
+  
+  <title>E-Fin - India's Fastest Growing Lending Platform</title>
 </head>
 
 <body>

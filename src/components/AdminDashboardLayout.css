@@ -1,0 +1,366 @@
+/* Admin Dashboard Layout Styles */
+
+.admin-dashboard-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #f7fafc;
+}
+
+/* Admin Navigation */
+.admin-dashboard-nav {
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.admin-dashboard-nav-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-dashboard-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.admin-dashboard-logo-img {
+    height: 40px;
+}
+
+.admin-portal-label {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #667eea;
+    border-left: 2px solid #e2e8f0;
+    padding-left: 1rem;
+}
+
+.admin-dashboard-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Role Badge */
+.role-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.role-badge.super-admin {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.role-badge.admin {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+}
+
+/* Admin Icon Button */
+.admin-nav-icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: #4a5568;
+}
+
+.admin-nav-icon-btn:hover {
+    background: #edf2f7;
+    border-color: #cbd5e0;
+    color: #2d3748;
+}
+
+/* Logout Button */
+.admin-logout-btn {
+    padding: 0.625rem 1.25rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.admin-logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* Profile Dropdown */
+.admin-dropdown-panel {
+    position: absolute;
+    top: 70px;
+    right: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    min-width: 280px;
+    animation: dropdownSlide 0.3s ease;
+    z-index: 1000;
+}
+
+@keyframes dropdownSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.admin-profile-panel {
+    padding: 1.5rem;
+}
+
+.admin-profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.admin-profile-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.admin-profile-info h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #2d3748;
+}
+
+.admin-profile-info p {
+    margin: 0.25rem 0 0 0;
+    font-size: 0.85rem;
+    color: #718096;
+}
+
+.admin-profile-details {
+    padding-top: 1rem;
+}
+
+.admin-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.admin-detail-label {
+    font-size: 0.85rem;
+    color: #718096;
+    font-weight: 500;
+}
+
+.admin-detail-value {
+    font-size: 0.85rem;
+    color: #2d3748;
+    font-weight: 600;
+}
+
+/* Dropdown Overlay */
+.admin-dropdown-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: 999;
+}
+
+/* Main Content */
+.admin-dashboard-main {
+    flex: 1;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Modal Styles */
+.admin-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.admin-modal-content {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlide 0.3s ease;
+    text-align: center;
+}
+
+@keyframes modalSlide {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.admin-modal-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.admin-modal-content h3 {
+    font-size: 1.5rem;
+    color: #2d3748;
+    margin: 0 0 0.75rem 0;
+}
+
+.admin-modal-content p {
+    color: #718096;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.6;
+}
+
+.admin-modal-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.admin-modal-btn {
+    flex: 1;
+    padding: 0.875rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.admin-modal-btn.cancel {
+    background: #edf2f7;
+    color: #4a5568;
+}
+
+.admin-modal-btn.cancel:hover {
+    background: #e2e8f0;
+}
+
+.admin-modal-btn.confirm {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.admin-modal-btn.confirm:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-dashboard-nav-content {
+        padding: 1rem;
+    }
+
+    .admin-portal-label {
+        display: none;
+    }
+
+    .admin-dashboard-main {
+        padding: 1rem;
+    }
+
+    .role-badge {
+        font-size: 0.75rem;
+        padding: 0.375rem 0.75rem;
+    }
+
+    .admin-logout-btn {
+        padding: 0.5rem 0.875rem;
+        font-size: 0.85rem;
+    }
+
+    .admin-dropdown-panel {
+        right: 1rem;
+        min-width: 260px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-logout-btn span {
+        display: none;
+    }
+
+    .admin-logout-btn {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .role-badge {
+        display: none;
+    }
+}

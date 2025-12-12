@@ -1,36 +1,144 @@
-/* Performance Optimizations - Add to App.css */
+/* ============================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================ */
 
-/* Reduce animations and use will-change for better performance */
+/* Image optimization for all images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    /* Enable GPU acceleration for smoother rendering */
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Optimize animations and transitions */
 * {
     /* Enable GPU acceleration for transforms and opacity */
-    -webkit-transform: translateZ(0);
+    will-change: auto;
+}
+
+/* Specific will-change for interactive elements */
+.primary-btn,
+.ghost-btn,
+.product-card,
+.testimonial-item,
+.hero-block,
+a:hover,
+button:hover {
+    will-change: transform, opacity, background;
+}
+
+/* Remove will-change after animation completes */
+.primary-btn:not(:hover),
+.ghost-btn:not(:hover),
+.product-card:not(:hover),
+a:not(:hover),
+button:not(:hover) {
+    will-change: auto;
+}
+
+/* Optimize scrolling performance */
+.testimonial-marquee,
+.carousel-track {
+    -webkit-overflow-scrolling: touch;
     transform: translateZ(0);
 }
 
-/* Optimize heavy backdrop-filter usage - reduce blur */
-.login-container,
-.dashboard-section,
-.floating-card {
-    backdrop-filter: blur(10px) !important;
-    /* Reduced from 20px */
-    -webkit-backdrop-filter: blur(10px) !important;
+/* Reduce animation complexity on mobile */
+@media (max-width: 768px) {
+    * {
+        animation-duration: 0.5s !important;
+        transition-duration: 0.2s !important;
+    }
+
+    /* Disable complex animations on mobile for better performance */
+    .carousel-track {
+        animation: none !important;
+    }
+
+    /* Simplify box shadows on mobile */
+    .hero-block,
+    .product-card,
+    .testimonial-item {
+        box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08) !important;
+    }
 }
 
-/* Simplify box shadows for better performance */
-.stat-card,
-.loan-card,
-.dashboard-section,
-.product-card {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important;
+/* Optimize font loading */
+@media screen and (prefers-reduced-data: reduce) {
+
+    /* Reduce gradient complexity for low data mode */
+    body,
+    html,
+    .page,
+    .fibe-home {
+        background: #FFE082 !important;
+        background-attachment: scroll !important;
+    }
 }
 
-.stat-card:hover,
-.loan-card:hover,
-.product-card:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+/* Improve perceived performance with skeleton loading */
+.lazy-loading {
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.3) 50%,
+            rgba(255, 255, 255, 0.1) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
 }
 
-/* Disable animations on low-end devices or when preferred */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Mobile viewport optimization */
+@media (max-width: 640px) {
+
+    /* Reduce padding on mobile for more content visibility */
+    .page>section,
+    .page>div:not(.hero-block):not(.admin-dashboard-layout),
+    .fibe-home>section,
+    .fibe-home>.hero-block {
+        padding-left: 4vw;
+        padding-right: 4vw;
+    }
+
+    /* Optimize touch targets for mobile */
+    .primary-btn,
+    .ghost-btn,
+    button,
+    a {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Reduce font size slightly on mobile for better readability */
+    html {
+        font-size: 15px;
+    }
+}
+
+/* Tablet optimization */
+@media (min-width: 641px) and (max-width: 1024px) {
+
+    .page>section,
+    .page>div:not(.hero-block):not(.admin-dashboard-layout),
+    .fibe-home>section,
+    .fibe-home>.hero-block {
+        padding-left: 4vw;
+        padding-right: 4vw;
+    }
+}
+
+/* Reduce motion for accessibility and performance */
 @media (prefers-reduced-motion: reduce) {
 
     *,
@@ -39,100 +147,29 @@
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
 
-/* Optimize floating animations - reduce complexity */
-@keyframes float {
+/* Print optimization */
+@media print {
 
-    0%,
-    100% {
-        transform: translate(0, 0);
+    body,
+    .page,
+    .fibe-home {
+        background: white !important;
     }
 
-    50% {
-        transform: translate(0, -10px);
-        /* Simplified movement */
-    }
-}
-
-@keyframes floatCard {
-
-    0%,
-    100% {
-        transform: translate(0, 0);
-    }
-
-    50% {
-        transform: translate(5px, -5px);
-        /* Reduced movement */
+    .primary-btn,
+    .ghost-btn {
+        border: 1px solid #000 !important;
     }
 }
 
-/* Reduce gradient complexity for backgrounds */
-body,
-.App {
-    background: linear-gradient(135deg, #fff6d6 0%, #ffffff 100%) !important;
-    background-attachment: scroll !important;
-    /* Changed from fixed for better performance */
-}
-
-/* Optimize page transitions */
-.page {
-    contain: layout style paint;
-    /* CSS containment for better performance */
-}
-
-/* Use transform instead of top/left for positioning animations */
-.floating-card {
-    will-change: transform;
-}
-
-/* Reduce animation iterations */
-.carousel-track {
-    animation-duration: 16s !important;
-    /* Slower, smoother */
-}
-
-/* Optimize hover effects */
-.primary-btn,
-.ghost-btn,
+/* Content visibility optimization for better performance */
+.testimonial-item,
 .product-card,
-.action-btn {
-    will-change: transform;
-    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+.offering-card {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 300px;
 }
-
-/* Debounce rapid re-renders */
-.loan-progress .progress-fill,
-.credit-score-bar .score-progress {
-    transition: width 0.5s ease !important;
-    /* Slower transition */
-}
-
-/* Remove expensive radial gradients on scroll */
-.login-page::before,
-.login-page::after,
-.dashboard-header::before {
-    opacity: 0.5 !important;
-    /* Reduce visibility to improve performance */
-}
-
-/* Optimize form inputs */
-input,
-textarea,
-select {
-    will-change: border-color, background-color;
-}
-
-/*
-Performance Tips Applied:
-1. Reduced backdrop-filter blur from 20px to 10px (60% faster)
-2. Simplified box-shadows (40% faster rendering)
-3. Reduced animation complexity
-4. Changed background-attachment from fixed to scroll
-5. Added CSS containment
-6. Used will-change for frequently animated elements
-7. Reduced gradient complexity
-8. Added prefers-reduced-motion support
-*/

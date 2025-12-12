@@ -84,8 +84,8 @@ function HomePage() {
               <Link className="primary-btn" to="/support/apply">
                 Get your loan now →
               </Link>
-              <Link className="ghost-btn" to="/solutions">
-                Explore products
+              <Link className="ghost-btn" to="/about">
+                Learn more
               </Link>
             </div>
             <div className="hero-badges">
@@ -97,13 +97,19 @@ function HomePage() {
           <div className="hero-visual">
             <div className="hero-carousel">
               <div className="carousel-track">
-                <img src="/3wheel.png" alt="3 Wheeler" className="carousel-image" />
+                <img src="/carousel-1.png" alt="Three Wheeler Loan" className="carousel-image" />
               </div>
               <div className="carousel-track">
-                <img src="/2wheel eletric.png" alt="Electric 2 Wheeler" className="carousel-image" />
+                <img src="/carousel-2.png" alt="Two Wheeler Loan" className="carousel-image" />
               </div>
               <div className="carousel-track">
-                <img src="/2 wheel.png" alt="2 Wheeler" className="carousel-image" />
+                <img src="/carousel-3.png" alt="Electric Vehicle Loan" className="carousel-image" />
+              </div>
+              <div className="carousel-track">
+                <img src="/carousel-4.png" alt="Business Loan" className="carousel-image" />
+              </div>
+              <div className="carousel-track">
+                <img src="/carousel-5.png" alt="Home Loan" className="carousel-image" />
               </div>
             </div>
           </div>

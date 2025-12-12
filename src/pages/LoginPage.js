@@ -29,8 +29,17 @@ function LoginPage() {
       setIsLoading(true);
       // Simulate API call
       setTimeout(() => {
+        // Create session with 30-minute expiration
+        const sessionData = {
+          userId: userId,
+          loginMethod: 'password',
+          loginTime: Date.now(),
+          expiresAt: Date.now() + (30 * 60 * 1000) // 30 minutes
+        };
+        localStorage.setItem('userSession', JSON.stringify(sessionData));
+
         setIsLoading(false);
-        navigate('/dashboard');
+        navigate('/dashboard', { replace: true });
       }, 1000);
     }
   };
@@ -70,8 +79,17 @@ function LoginPage() {
       setIsLoading(true);
       // Simulate login
       setTimeout(() => {
+        // Create session with 30-minute expiration
+        const sessionData = {
+          mobile: phoneNumber, // Using phoneNumber from state
+          loginMethod: 'otp',
+          loginTime: Date.now(),
+          expiresAt: Date.now() + (30 * 60 * 1000) // 30 minutes
+        };
+        localStorage.setItem('userSession', JSON.stringify(sessionData));
+
         setIsLoading(false);
-        navigate('/dashboard');
+        navigate('/dashboard', { replace: true });
       }, 1000);
     }
   };
