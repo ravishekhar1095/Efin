@@ -7223,6 +7223,40 @@ blockquote cite {
   }
 }
 
+/* Ensure Carousel Visibility on Mobile */
+@media (max-width: 768px) {
+  .hero-visual {
+    display: flex !important;
+    width: 100%;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-carousel {
+    display: block !important;
+    width: 100% !important;
+    height: 300px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    overflow: hidden;
+    position: relative;
+    background: rgba(255, 255, 255, 0.5);
+    /* Placeholder background */
+  }
+
+  .carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .carousel-track {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 /* Prevent zoom on input focus (iOS) */
 @media (max-width: 768px) {
 
