@@ -38,6 +38,318 @@ pool.getConnection()
     });
 
 // ================================
+// USER AUTHENTICATION
+// ================================
+
+/**
+ * User Login with Password
+ * POST /api/auth/login
+ */
+app.post('/api/auth/login', async (req, res) => {
+    try {
+        const { userId, password } = req.body;
+
+        if (!userId || !password) {
+            return res.status(400).json({
+                success: false,
+                message: 'Phone/email and password are required'
+            });
+        }
+
+        // Determine if userId is email or phone
+        const isEmail = userId.includes('@');
+        const query = isEmail
+            ? 'SELECT * FROM users WHERE email = ? AND is_active = TRUE'
+            : 'SELECT * FROM users WHERE phone = ? AND is_active = TRUE';
+
+        const [users] = await pool.query(query, [userId]);
+
+        if (users.length === 0) {
+            return res.status(401).json({
+                success: false,
+                message: 'Invalid credentials'
+            });
+        }
+
+        const user = users[0];
+
+        // Verify password
+        const isPasswordValid = await bcrypt.compare(password, user.password_hash);
+
+        if (!isPasswordValid) {
+            return res.status(401).json({
+                success: false,
+                message: 'Invalid credentials'
+            });
+        }
+
+        // Update last login
+        await pool.query(
+            'UPDATE users SET updated_at = NOW() WHERE id = ?',
+            [user.id]
+        );
+
+        res.json({
+            success: true,
+            message: 'Login successful',
+            user: {
+                id: user.id,
+                email: user.email,
+                phone: user.phone,
+                name: `${user.first_name || ''} ${user.last_name || ''}`.trim(),
+                isVerified: user.is_verified
+            }
+        });
+
+    } catch (error) {
+        console.error('Login error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+});
+
+/**
+ * Request OTP for Phone Number
+ * POST /api/auth/request-otp
+ */
+app.post('/api/auth/request-otp', async (req, res) => {
+    try {
+        const { phone } = req.body;
+
+        if (!phone || phone.length !== 10) {
+            return res.status(400).json({
+                success: false,
+                message: 'Please provide a valid 10-digit phone number'
+            });
+        }
+
+        // Check if user exists
+        let [users] = await pool.query(
+            'SELECT id FROM users WHERE phone = ?',
+            [phone]
+        );
+
+        let userId;
+
+        if (users.length === 0) {
+            // Create new user with temporary password
+            const tempPassword = Math.random().toString(36).slice(-8);
+            const passwordHash = await bcrypt.hash(tempPassword, 10);
+
+            const [result] = await pool.query(
+                `INSERT INTO users (phone, password_hash, is_verified, is_active, kyc_status)
+                 VALUES (?, ?, FALSE, TRUE, 'pending')`,
+                [phone, passwordHash]
+            );
+
+            userId = result.insertId;
+
+            // Assign user role
+            const [roles] = await pool.query("SELECT id FROM roles WHERE role_name = 'user'");
+            if (roles.length > 0) {
+                await pool.query(
+                    'INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)',
+                    [userId, roles[0].id]
+                );
+            }
+        } else {
+            userId = users[0].id;
+        }
+
+        // Generate 6-digit OTP
+        const otp = Math.floor(100000 + Math.random() * 900000).toString();
+        const otpExpire = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+
+        // Store OTP (you might want to create an otp_codes table)
+        // For now, we'll store it in a simple way
+        await pool.query(
+            `CREATE TABLE IF NOT EXISTS otp_codes (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                user_id INT NOT NULL,
+                otp VARCHAR(6) NOT NULL,
+                expires_at DATETIME NOT NULL,
+                is_used BOOLEAN DEFAULT FALSE,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (user_id) REFERENCES users(id)
+            )`
+        );
+
+        await pool.query(
+            'INSERT INTO otp_codes (user_id, otp, expires_at) VALUES (?, ?, ?)',
+            [userId, otp, otpExpire]
+        );
+
+        // TODO: Send OTP via SMS (Twilio, AWS SNS, etc.)
+        console.log(`📱 OTP for ${phone}: ${otp}`);
+
+        res.json({
+            success: true,
+            message: 'OTP sent successfully',
+            // Remove this in production!
+            otp: process.env.NODE_ENV === 'development' ? otp : undefined
+        });
+
+    } catch (error) {
+        console.error('Request OTP error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+});
+
+/**
+ * Verify OTP and Login
+ * POST /api/auth/verify-otp
+ */
+app.post('/api/auth/verify-otp', async (req, res) => {
+    try {
+        const { phone, otp } = req.body;
+
+        if (!phone || !otp) {
+            return res.status(400).json({
+                success: false,
+                message: 'Phone number and OTP are required'
+            });
+        }
+
+        // Find user
+        const [users] = await pool.query(
+            'SELECT * FROM users WHERE phone = ? AND is_active = TRUE',
+            [phone]
+        );
+
+        if (users.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: 'User not found'
+            });
+        }
+
+        const user = users[0];
+
+        // Verify OTP
+        const [otpRecords] = await pool.query(
+            `SELECT * FROM otp_codes 
+             WHERE user_id = ? AND otp = ? AND is_used = FALSE AND expires_at > NOW()
+             ORDER BY created_at DESC LIMIT 1`,
+            [user.id, otp]
+        );
+
+        if (otpRecords.length === 0) {
+            return res.status(401).json({
+                success: false,
+                message: 'Invalid or expired OTP'
+            });
+        }
+
+        // Mark OTP as used
+        await pool.query(
+            'UPDATE otp_codes SET is_used = TRUE WHERE id = ?',
+            [otpRecords[0].id]
+        );
+
+        // Update user as verified
+        await pool.query(
+            'UPDATE users SET is_verified = TRUE, updated_at = NOW() WHERE id = ?',
+            [user.id]
+        );
+
+        res.json({
+            success: true,
+            message: 'OTP verified successfully',
+            user: {
+                id: user.id,
+                email: user.email,
+                phone: user.phone,
+                name: `${user.first_name || ''} ${user.last_name || ''}`.trim(),
+                isVerified: true
+            }
+        });
+
+    } catch (error) {
+        console.error('Verify OTP error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+});
+
+/**
+ * Register New User
+ * POST /api/auth/register
+ */
+app.post('/api/auth/register', async (req, res) => {
+    try {
+        const { phone, email, password, firstName, lastName } = req.body;
+
+        if (!phone || !password) {
+            return res.status(400).json({
+                success: false,
+                message: 'Phone and password are required'
+            });
+        }
+
+        // Check if user already exists
+        const [existingUsers] = await pool.query(
+            'SELECT id FROM users WHERE phone = ? OR email = ?',
+            [phone, email || null]
+        );
+
+        if (existingUsers.length > 0) {
+            return res.status(400).json({
+                success: false,
+                message: 'User with this phone or email already exists'
+            });
+        }
+
+        // Hash password
+        const passwordHash = await bcrypt.hash(password, 10);
+
+        // Insert new user
+        const [result] = await pool.query(
+            `INSERT INTO users (
+                phone, email, password_hash, first_name, last_name,
+                is_verified, is_active, kyc_status
+            ) VALUES (?, ?, ?, ?, ?, FALSE, TRUE, 'pending')`,
+            [phone, email || null, passwordHash, firstName || null, lastName || null]
+        );
+
+        const newUserId = result.insertId;
+
+        // Assign user role
+        const [roles] = await pool.query("SELECT id FROM roles WHERE role_name = 'user'");
+        if (roles.length > 0) {
+            await pool.query(
+                'INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)',
+                [newUserId, roles[0].id]
+            );
+        }
+
+        res.json({
+            success: true,
+            message: 'User registered successfully',
+            user: {
+                id: newUserId,
+                phone,
+                email,
+                name: `${firstName || ''} ${lastName || ''}`.trim()
+            }
+        });
+
+    } catch (error) {
+        console.error('Register error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+});
+
+// ================================
 // ADMIN AUTHENTICATION
 // ================================
 

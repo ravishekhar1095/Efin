@@ -1,9 +1,16 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import instantCashIcon from '../assets/product-icons/instant-cash-loan.png';
 import personalLoanIcon from '../assets/product-icons/personal-loan.png';
 import emiStoreIcon from '../assets/product-icons/emi-store.png';
 
-
+const CAROUSEL_IMAGES = [
+  { src: '/carousel-1.png', alt: 'Three Wheeler Loan' },
+  { src: '/carousel-2.png', alt: 'Two Wheeler Loan' },
+  { src: '/carousel-3.png', alt: 'Electric Vehicle Loan' },
+  { src: '/carousel-4.png', alt: 'Business Loan' },
+  { src: '/carousel-5.png', alt: 'Home Loan' }
+];
 
 const PRODUCT_CARDS = [
   {
@@ -64,6 +71,15 @@ const TESTIMONIALS = [
 ];
 
 function HomePage() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % CAROUSEL_IMAGES.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="page fibe-home">
@@ -95,21 +111,24 @@ function HomePage() {
           </div>
 
           <div className="hero-visual">
-            <div className="hero-carousel">
-              <div className="carousel-track">
-                <img src="/carousel-1.png" alt="Three Wheeler Loan" className="carousel-image" />
-              </div>
-              <div className="carousel-track">
-                <img src="/carousel-2.png" alt="Two Wheeler Loan" className="carousel-image" />
-              </div>
-              <div className="carousel-track">
-                <img src="/carousel-3.png" alt="Electric Vehicle Loan" className="carousel-image" />
-              </div>
-              <div className="carousel-track">
-                <img src="/carousel-4.png" alt="Business Loan" className="carousel-image" />
-              </div>
-              <div className="carousel-track">
-                <img src="/carousel-5.png" alt="Home Loan" className="carousel-image" />
+            <div className="landing-carousel">
+              {CAROUSEL_IMAGES.map((image, index) => (
+                <div
+                  key={index}
+                  className={`landing-carousel-slide ${index === currentSlide ? 'active' : ''}`}
+                >
+                  <img src={image.src} alt={image.alt} />
+                </div>
+              ))}
+              <div className="landing-carousel-dots">
+                {CAROUSEL_IMAGES.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`dot ${index === currentSlide ? 'active' : ''}`}
+                    onClick={() => setCurrentSlide(index)}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </div>

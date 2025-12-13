@@ -22,38 +22,84 @@ function LoginPage() {
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // API Base URL
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
+
   // Password login handler
-  const handlePasswordLogin = (e) => {
+  const handlePasswordLogin = async (e) => {
     e.preventDefault();
     if (userId && password && termsAccepted) {
       setIsLoading(true);
-      // Simulate API call
-      setTimeout(() => {
-        // Create session with 30-minute expiration
-        const sessionData = {
-          userId: userId,
-          loginMethod: 'password',
-          loginTime: Date.now(),
-          expiresAt: Date.now() + (30 * 60 * 1000) // 30 minutes
-        };
-        localStorage.setItem('userSession', JSON.stringify(sessionData));
 
+      try {
+        const response = await fetch(`${API_URL}/api/auth/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ userId, password }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          // Create session with user data
+          const sessionData = {
+            userId: data.user.id,
+            phone: data.user.phone,
+            email: data.user.email,
+            name: data.user.name,
+            loginMethod: 'password',
+            loginTime: Date.now(),
+            expiresAt: Date.now() + (30 * 60 * 1000) // 30 minutes
+          };
+
+          localStorage.setItem('userSession', JSON.stringify(sessionData));
+          navigate('/dashboard', { replace: true });
+        } else {
+          alert(data.message || 'Login failed. Please check your credentials.');
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        alert('Network error. Please check your connection and try again.');
+      } finally {
         setIsLoading(false);
-        navigate('/dashboard', { replace: true });
-      }, 1000);
+      }
     }
   };
 
   // OTP request handler
-  const handleRequestOtp = (e) => {
+  const handleRequestOtp = async (e) => {
     e.preventDefault();
     if (phoneNumber.length === 10 && termsAccepted) {
       setIsLoading(true);
-      // Simulate API call
-      setTimeout(() => {
-        setShowOtpInput(true);
+
+      try {
+        const response = await fetch(`${API_URL}/api/auth/request-otp`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ phone: phoneNumber }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          setShowOtpInput(true);
+          // In development, show OTP
+          if (data.otp) {
+            alert(`Development Mode: Your OTP is ${data.otp}`);
+          }
+        } else {
+          alert(data.message || 'Failed to send OTP. Please try again.');
+        }
+      } catch (error) {
+        console.error('OTP request error:', error);
+        alert('Network error. Please check your connection and try again.');
+      } finally {
         setIsLoading(false);
-      }, 1000);
+      }
     }
   };
 
@@ -72,25 +118,50 @@ function LoginPage() {
   };
 
   // OTP submit handler
-  const handleOtpLogin = (e) => {
+  const handleOtpLogin = async (e) => {
     e.preventDefault();
     const otpValue = otp.join('');
+
     if (otpValue.length === 6) {
       setIsLoading(true);
-      // Simulate login
-      setTimeout(() => {
-        // Create session with 30-minute expiration
-        const sessionData = {
-          mobile: phoneNumber, // Using phoneNumber from state
-          loginMethod: 'otp',
-          loginTime: Date.now(),
-          expiresAt: Date.now() + (30 * 60 * 1000) // 30 minutes
-        };
-        localStorage.setItem('userSession', JSON.stringify(sessionData));
 
+      try {
+        const response = await fetch(`${API_URL}/api/auth/verify-otp`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            phone: phoneNumber,
+            otp: otpValue
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          // Create session with user data
+          const sessionData = {
+            userId: data.user.id,
+            phone: data.user.phone,
+            email: data.user.email,
+            name: data.user.name,
+            loginMethod: 'otp',
+            loginTime: Date.now(),
+            expiresAt: Date.now() + (30 * 60 * 1000) // 30 minutes
+          };
+
+          localStorage.setItem('userSession', JSON.stringify(sessionData));
+          navigate('/dashboard', { replace: true });
+        } else {
+          alert(data.message || 'Invalid OTP. Please try again.');
+        }
+      } catch (error) {
+        console.error('OTP verification error:', error);
+        alert('Network error. Please check your connection and try again.');
+      } finally {
         setIsLoading(false);
-        navigate('/dashboard', { replace: true });
-      }, 1000);
+      }
     }
   };
 

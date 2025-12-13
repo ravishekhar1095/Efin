@@ -1,8 +1,28 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import './LoanAgainstPropertyPage.css';
 
 function LoanAgainstPropertyPage() {
+    const carouselImages = [
+        '/property-assets/lap-real-1.png',
+        '/property-assets/lap-real-2.png',
+        '/property-assets/lap-real-3.png',
+        '/property-assets/lap-real-4.png'
+    ];
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    // Auto-rotate carousel
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselImages.length);
+        }, 4000);
+
+        return () => clearInterval(timer);
+    }, [carouselImages.length]);
+
     return (
+
         <div className="page property-loan-page">
             {/* Hero Section with Illustration */}
             <section className="property-hero-modern">
@@ -59,19 +79,26 @@ function LoanAgainstPropertyPage() {
                     </div>
 
                     <div className="property-hero-visual">
-                        <div className="property-visual-card">
-                            <img src="/property-hero.png" alt="Loan Against Property" className="property-hero-image" />
-                            <div className="floating-stat stat-1">
-                                <strong>₹10Cr+</strong>
-                                <span>Max Loan</span>
+                        <div className="simple-carousel">
+                            <div className="carousel-track">
+                                {carouselImages.map((image, index) => (
+                                    <img
+                                        key={index}
+                                        src={image}
+                                        alt={`Property ${index + 1}`}
+                                        className={`carousel-image ${index === currentIndex ? 'active' : ''}`}
+                                    />
+                                ))}
                             </div>
-                            <div className="floating-stat stat-2">
-                                <strong>8.50%</strong>
-                                <span>Starting Rate</span>
-                            </div>
-                            <div className="floating-stat stat-3">
-                                <strong>24-48 Hrs</strong>
-                                <span>Disbursal</span>
+                            <div className="carousel-indicators">
+                                {carouselImages.map((_, index) => (
+                                    <button
+                                        key={index}
+                                        className={`indicator-dot ${index === currentIndex ? 'active' : ''}`}
+                                        onClick={() => setCurrentIndex(index)}
+                                        aria-label={`Go to slide ${index + 1}`}
+                                    />
+                                ))}
                             </div>
                         </div>
                     </div>

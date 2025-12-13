@@ -1,7 +1,25 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import './SmallBusinessLoanPage.css';
 
+const BUSINESS_CAROUSEL_IMAGES = [
+    { src: '/business-loan-1.png', alt: 'Small Business Retail Shop' },
+    { src: '/business-loan-2.png', alt: 'Business Owner Working' },
+    { src: '/business-loan-3.png', alt: 'Business Warehouse Operations' },
+    { src: '/business-loan-4.png', alt: 'Restaurant Business Owner' }
+];
+
 function SmallBusinessLoanPage() {
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % BUSINESS_CAROUSEL_IMAGES.length);
+        }, 4000);
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <div className="page business-loan-page-modern">
             {/* Hero Section */}
@@ -59,19 +77,24 @@ function SmallBusinessLoanPage() {
                     </div>
 
                     <div className="business-hero-visual">
-                        <div className="business-visual-card">
-                            <img src="/business-loan-hero.png" alt="Small Business Loan" className="business-hero-image" />
-                            <div className="floating-stat-business stat-1">
-                                <strong>₹5L</strong>
-                                <span>Max Loan</span>
-                            </div>
-                            <div className="floating-stat-business stat-2">
-                                <strong>12%</strong>
-                                <span>Starting Rate</span>
-                            </div>
-                            <div className="floating-stat-business stat-3">
-                                <strong>24-48h</strong>
-                                <span>Disbursal</span>
+                        <div className="business-carousel">
+                            {BUSINESS_CAROUSEL_IMAGES.map((image, index) => (
+                                <div
+                                    key={index}
+                                    className={`business-carousel-slide ${index === currentSlide ? 'active' : ''}`}
+                                >
+                                    <img src={image.src} alt={image.alt} />
+                                </div>
+                            ))}
+                            <div className="business-carousel-dots">
+                                {BUSINESS_CAROUSEL_IMAGES.map((_, index) => (
+                                    <button
+                                        key={index}
+                                        className={`dot ${index === currentSlide ? 'active' : ''}`}
+                                        onClick={() => setCurrentSlide(index)}
+                                        aria-label={`Go to slide ${index + 1}`}
+                                    />
+                                ))}
                             </div>
                         </div>
                     </div>

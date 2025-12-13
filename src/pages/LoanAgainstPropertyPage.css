@@ -3,15 +3,17 @@
    ======================================== */
 
 /* Hero Section - Modern Design */
+/* Hero Section - Modern Design */
 .property-hero-modern {
     background: linear-gradient(135deg,
-        rgba(255, 251, 234, 0.95) 0%,
-        rgba(255, 248, 225, 0.85) 25%,
-        rgba(255, 243, 214, 0.75) 50%,
-        rgba(255, 237, 196, 0.65) 75%,
-        rgba(255, 232, 161, 0.5) 100%);
+            rgba(255, 251, 234, 0.95) 0%,
+            rgba(255, 248, 225, 0.85) 25%,
+            rgba(255, 243, 214, 0.75) 50%,
+            rgba(255, 237, 196, 0.65) 75%,
+            rgba(255, 232, 161, 0.5) 100%);
     border-radius: 40px;
-    padding: 4rem 3rem;
+    padding: 3rem;
+    /* Reduced padding for more content space */
     margin: 2rem 0 4rem;
     position: relative;
     overflow: hidden;
@@ -31,8 +33,9 @@
 
 .property-hero-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    grid-template-columns: 0.8fr 1.3fr;
+    /* Give much more space to the image on the right */
+    gap: 2rem;
     align-items: center;
     position: relative;
     z-index: 1;
@@ -42,6 +45,8 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    max-width: 650px;
+    padding-right: 0;
 }
 
 .property-badge {
@@ -148,77 +153,72 @@
 /* Hero Visual */
 .property-hero-visual {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
-.property-visual-card {
+/* Simple Carousel - Clean Implementation */
+.simple-carousel {
     position: relative;
     width: 100%;
-    max-width: 550px;
-}
-
-.property-hero-image {
-    width: 100%;
-    height: auto;
+    height: 550px;
     border-radius: 32px;
+    overflow: hidden;
     box-shadow: 0 25px 70px rgba(15, 23, 42, 0.15);
 }
 
-.floating-stat {
+.carousel-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-image {
     position: absolute;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    padding: 1rem 1.5rem;
-    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.15);
-    border: 1px solid rgba(247, 189, 32, 0.2);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+}
+
+.carousel-image.active {
+    opacity: 1;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
     display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    animation: float 3s ease-in-out infinite;
+    gap: 10px;
+    z-index: 10;
 }
 
-.floating-stat strong {
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: var(--primary-dark);
-    line-height: 1;
+.indicator-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
 }
 
-.floating-stat span {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    line-height: 1;
+.indicator-dot:hover {
+    background: rgba(255, 255, 255, 0.8);
 }
 
-.stat-1 {
-    top: 10%;
-    left: -10%;
-    animation-delay: 0s;
+.indicator-dot.active {
+    background: #f7bd20;
+    transform: scale(1.2);
 }
 
-.stat-2 {
-    top: 50%;
-    right: -8%;
-    animation-delay: 1s;
-}
 
-.stat-3 {
-    bottom: 10%;
-    left: 5%;
-    animation-delay: 2s;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
-}
+/* Floating stats removed */
 
 /* Features Section - Bento Grid */
 .property-features-section {
@@ -617,8 +617,8 @@
 
 .property-cta-card {
     background: linear-gradient(135deg,
-        rgba(247, 189, 32, 0.1) 0%,
-        rgba(247, 189, 32, 0.05) 100%);
+            rgba(247, 189, 32, 0.1) 0%,
+            rgba(247, 189, 32, 0.05) 100%);
     border-radius: 40px;
     padding: 4rem 3rem;
     text-align: center;
